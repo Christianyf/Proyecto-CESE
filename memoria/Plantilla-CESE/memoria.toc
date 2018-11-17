@@ -1,0 +1,32 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
+\select@language {spanish}
+\contentsline {chapter}{Resumen}{\es@scroman {iii}}{section*.1}
+\contentsline {chapter}{\numberline {1}Introducci\IeC {\'o}n General}{1}{chapter.7}
+\contentsline {section}{\numberline {1.1}Sistemas de control de accceso biom\IeC {\'e}trico}{1}{section.8}
+\contentsline {section}{\numberline {1.2}Motivaci\IeC {\'o}n}{2}{section.10}
+\contentsline {section}{\numberline {1.3}Objetivos y alcance}{2}{section.11}
+\contentsline {chapter}{\numberline {2}Introducci\IeC {\'o}n Espec\IeC {\'\i }fica}{5}{chapter.14}
+\contentsline {section}{\numberline {2.1}Planteamiento}{5}{section.15}
+\contentsline {subsection}{\numberline {2.1.1}Descripci\IeC {\'o}n funcional}{5}{subsection.16}
+\contentsline {section}{\numberline {2.2}Requerimientos}{6}{section.18}
+\contentsline {section}{\numberline {2.3}Planificaci\IeC {\'o}n}{7}{section.19}
+\contentsline {chapter}{\numberline {3}Dise\IeC {\~n}o e Implementaci\IeC {\'o}n}{9}{chapter.21}
+\contentsline {section}{\numberline {3.1}Plataforma de desarrollo}{9}{section.22}
+\contentsline {subsection}{\numberline {3.1.1}Linux embebido}{10}{subsection.24}
+\contentsline {subsection}{\numberline {3.1.2}Pantalla t\IeC {\'a}ctil element 14}{10}{subsection.26}
+\contentsline {section}{\numberline {3.2}Desarrollo de interfaz gr\IeC {\'a}fica}{12}{section.28}
+\contentsline {subsection}{\numberline {3.2.1}GTK+}{12}{subsection.29}
+\contentsline {subsection}{\numberline {3.2.2}Glade}{12}{subsection.30}
+\contentsline {section}{\numberline {3.3}M\IeC {\'o}dulo sensor para adquisici\IeC {\'o}n de huellas}{13}{section.32}
+\contentsline {subsection}{\numberline {3.3.1}Lectores \IeC {\'o}pticos reflexivos}{13}{subsection.33}
+\contentsline {subsection}{\numberline {3.3.2}M\IeC {\'o}dulo lector de huella Adafruit ZFM-20}{13}{subsection.35}
+\contentsline {section}{\numberline {3.4}Sistema General}{15}{section.39}
+\contentsline {section}{\numberline {3.5}Subsistema GUI (logic Service)}{15}{section.40}
+\contentsline {section}{\numberline {3.6}Subsistema para control del sensor de huella}{15}{section.41}
+\contentsline {section}{\numberline {3.7}Subsistema data-web}{15}{section.42}
+\contentsline {chapter}{\numberline {4}Ensayos y Resultados}{17}{chapter.43}
+\contentsline {section}{\numberline {4.1}Pruebas funcionales del hardware}{17}{section.44}
+\contentsline {chapter}{\numberline {5}Conclusiones}{19}{chapter.45}
+\contentsline {section}{\numberline {5.1}Conclusiones generales }{19}{section.46}
+\contentsline {section}{\numberline {5.2}Pr\IeC {\'o}ximos pasos}{19}{section.47}

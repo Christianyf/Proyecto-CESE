@@ -1,0 +1,310 @@
+\chapter{Diseño e Implementación} % Main chapter title
+
+\label{Chapter3} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+  basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  deletekeywords={...},            % if you want to delete keywords from the given language
+  %escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  %extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  %frame=single,	                   % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},       % keyword style
+  language=[ANSI]C,					% the language of the code
+  %otherkeywords={*,...},           % if you want to add more keywords to the set
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  stringstyle=\color{mymauve},     % string literal style
+  tabsize=2,	                   % sets default tabsize to 2 spaces
+  title=\lstname,                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+  morecomment=[s]{/*}{*/}%
+}
+
+
+%----------------------------------------------------------------------------------------
+%	SECTION 1
+%----------------------------------------------------------------------------------------
+%%\section{Análisis del software}
+ 
+%La idea de esta sección es resaltar los problemas encontrados, los criterios %utilizados y la justificación de las decisiones que se hayan tomado.
+
+%Se puede agregar código o pseudocódigo dentro de un entorno lstlisting con el siguiente código:
+
+%\begin{verbatim}
+%\begin{lstlisting}[caption= "un epígrafe descriptivo"]
+
+%	las líneas de código irían aquí...
+	
+%\end{lstlisting}
+%\end{verbatim}
+
+%A modo de ejemplo:
+
+%\begin{lstlisting}[caption=Pseudocódigo del lazo principal de control.]  % Start your code-block
+
+%#define MAX_SENSOR_NUMBER 3
+%#define MAX_ALARM_NUMBER  6
+%#define MAX_ACTUATOR_NUMBER 6
+
+%uint32_t sensorValue[MAX_SENSOR_NUMBER];		
+%FunctionalState alarmControl[MAX_ALARM_NUMBER];	//ENABLE or DISABLE
+%state_t alarmState[MAX_ALARM_NUMBER];						//ON or OFF
+%state_t actuatorState[MAX_ACTUATOR_NUMBER];			//ON or OFF
+
+%void vControl() {
+
+%	initGlobalVariables();
+	
+%	period = 500 ms;
+		
+%	while(1) {
+
+%		ticks = xTaskGetTickCount();
+		
+%		updateSensors();
+		
+%		updateAlarms();
+		
+%		controlActuators();
+		
+%		vTaskDelayUntil(&ticks, period);
+%	}
+%}
+%\end{lstlisting}
+
+\section{Plataforma de desarrollo}
+%------------------------------------------------------------------------------------
+Uno de los aspectos mas importantes dentro de la ejecución del proyecto es la correcta selección de la plataforma de desarrollo ya que de esta dependerá todas las funcionalidades a crear, además, una correcta selección puede facilitar  la implementación de los diferentes requerimientos, es así que que una mala decisión en este punto puede ocasionar retrasos significativos e incluso puede comprometer la culminación del proyecto.
+Para el caso puntual de esta aplicación al considerar que los requerimientos demandan alta capacidad de almacenamiento, soporte para sistema operativo, interfaces de comunicación, conectividad y uso de periféricos externos y sin dejar de lado la parte económica, se establece como la mejor opción la placa Raspberry Pi 3 modelo B+ cuyas principales características se detallan a continuación.
+Raspberry Pi es un ordenador de bajo costo pero altamente potente y de dimensiones muy pequeñas , fue desarrollada con la intención de facilitar la enseñanza de la informática y para que pueda ser utilizada para grandes proyectos como para aficionados de la electrónica y computación.
+Se han lanzado ya varios modelos previos de esta placa los mismos que incorporan nuevas características y funcionalidades sin que esto signifique incompatibilidad entre los diferentes modelos.
+Características técnicas:
+\begin{itemize}
+\item Procesador: Broadcom BCM2837BO Cortex-A53 (ARMv8) 64 bit
+\item Frecuencia: 1,4 GHz
+\item Memoria: 1 GB LPDDR2 SDRAM
+\item Conectividad inalámbrica: 2.4 GHz / 5 GHz IEEE 802.11b/g/n/ac Bluetooth 4.2 BLE
+\item Conectividad de red: Gigabit Ethernet over USB 2.0
+\item Puertos:
+\begin{itemize}
+\item GPIO 40 pines
+\item HDMI
+\item 4xUSB 2.0
+\item CSI (Cámara Raspberry)
+\item DSI (Pantalla táctil)
+\item Toma auriculares / video compuesto
+\item Micro SD
+\item Micro USB (Alimentación) 
+\end{itemize}
+\end{itemize}
+Otra de las ventajas del modelo seleccionado es el soporte wifi 802.11ac además de la opción de soporte para el estándar Power-over-Ethernet (PoE).
+La figura \ref{fig:rasp}''muestra la distribución de los diferentes módulos constitutivos de la Raspberry.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=.3]{./Figures/rasp.png}
+	\caption{Raspberry Pi 3 B+ módulos constitutivos.}
+	\label{fig:rasp}
+\end{figure}
+ 
+ \subsection{Linux embebido}
+ El término Linux embebido se refiere al uso del núcleo Linux en un sistema embebido, en este caso la placa de desarrollo seleccionada.
+Dicho núcleo combinado con un conjunto de utilidades de software libre  se ajustan dentro del hardware para el desarrollo del proyecto.
+Para tal propósito se ha seleccionado el sistema operativo Raspbian que es la distribución por excelencia para Raspberry, tal distribución es la mas completa y optimizada de las existentes la cual cuenta también con el respaldo oficial.
+Raspbian OS esta basada en la distro Debian Wheezy (Debian 7.0) optimizada para Raspberry.
+La figura \ref{fig:raspbian} muestra la versión Raspbian Lite, versión con interfaz de escritorio, ejecutandose sobre la placa embebida.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=.3]{./Figures/raspbian.png}
+	\caption{Interfaz Raspbian Lite.}
+	\label{fig:raspbian}
+\end{figure}
+
+ \subsection{Pantalla táctil element 14}
+Pantalla de 7 pulgadas diseñada especialmente para la placa de desarrollo seleccionada y gran variedad de placas de la misma familia. 
+Este accesorio ha sido integrado en gran cantidad de proyectos tanto de información y entretenimiento así como de tecnología. 
+Entre sus principales características se citan:
+
+\begin{itemize}
+\item Dimensiones : 194mm x 110mm x 20mm 
+\item Resolución: 800 x 480 pixeles
+\item Tipo de detección: Capacitivo
+\end{itemize}
+
+Para su conexión con la Raspberry Pi utiliza una placa para adaptar señales de alimentación y señales lógicas, además, la comunicación se realiza mediante el puerto y protocolo  DSI (Display Serial Interface).
+Gracias a la la implementación del sistema operativo, la pantalla funciona como un dispositivo “plug and play” por lo que no fue necesario el desarrollo de librerías especiales.
+La figura \ref{fig:raspbian} muestra los elementos constitutivos y necesarios para la conexión de la pantalla con la placa de desarrollo.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=.5]{./Figures/pantalla.png}
+	\caption{Pantalla touch 7 pulgadas element 14 y accesorios para conexión.}
+	\label{fig:pantalla}
+\end{figure}
+
+%------------------------------------------------------------------------------------
+\section{Desarrollo de interfaz gráfica}
+ \subsection{GTK+}
+GTK+ o GIMP Toolkit es una herramienta multiplataforma utilizada para crear interfaces gráficas de usuario, es una herramienta multiplataforma escrita en lenguaje C pero que permite el uso de otros lenguajes como Perl y Python.
+
+GTK es software libre pero licenciado permite la creación de software libre como propietario.
+La herramienta se basa en una serie de librerías entre las cuales destacan:
+
+\begin{itemize}
+\item Glib: Proporciona los bloques básicos para construir aplicaciones y bibliotecas escritas en C, proporciona la implementación del bucle principal y funciones para el uso de cadenas y estructuras de datos comunes. 
+\item Gobject: Proporciona el sistema para manejo de objetos para el diseño y dibujo de texto internacional.
+\item GIO: Proporciona una atracción del sistema de archivos permitiendo a las aplicaciones acceder a los archivos remotos y locales consistentemente.
+\item GTK: Proporciona controles de interfaz de usuario y señales para los controles de usuario.
+\end{itemize}
+
+\subsection{Glade}
+Glade es un entorno gráfico para el desarrollo de interfaces gráficas basadas en GTK+ el cual genera un archivo en formato XML  y gracias a esta propiedad permite el desarrollo con soporte para diferentes lenguajes de programación como C, Java, Python entre otros.
+La figura \ref{fig:glade} muestra el entorno de desarrollo de Glade.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=.3]{./Figures/glade.png}
+	\caption{Entorno de desarrollo Glade.}
+	\label{fig:glade}
+\end{figure}
+
+El entorno se divide en tres columnas principales, a la izquierda la paleta de elementos con un conjunto de bloques como botones, contenedores y ventanas los cuales son posteriormente arrastrados hacia la columna central que ofrece la vista del proyecto. En esta locación se realiza la disposición de los componentes de nuestra interfaz según las necesidades del diseño.
+
+Finalmente la columna de la derecha muestra el diagrama de árbol de la interfaz creada y muestra también las diferentes propiedades de cada elemento como sus dimensiones, etiqueta, nombre o identificador y señales asociadas que son funciones llamadas para su ejecución luego de ocurrido cierto evento ligado al mencionado elemento.
+
+Para el desarrollo de la presente memoria se efectuó el siguiente método de trabajo para cada una de las páginas desarrolladas. 
+
+En primer lugar se selecciona una ventana principal, sobre esta se distribuyen el resto de componentes; para lograr una distribución mas uniforme y estructurada se hace uso de contenedores, una ves con los elementos en su posición final, se procede a establecer identificadores adecuados para cada uno así como la asignación de señales a eventos. 
+
+La asignación de señales e identificadores es muy importante ya que estos se utilizan luego en el programa principal.
+Finalmente todo el diseño se guarda como un archivo con extensión (.glade) el cual se invocará desde la aplicación final.
+
+%------------------------------------------------------------------------------------
+%------------------------------------------------------------------------------------
+\section{Módulo sensor para adquisición de huellas}
+\subsection{Lectores ópticos reflexivos}
+El funcionamiento del sensor  de huella comienza luego de  colocar el dedo sobre la superficie de cristal del mismo la cual esta iluminada mediante un diodo led. La luz incide sobre el dedo causando el efecto de reflexión, este efecto se manifiesta con la aparición de zonas mas obscuras en las crestas de la huella y zonas mas claras en los valles.
+
+La imagen recogida es procesada en busca de características relevantes (Minucias), luego de esto se genera una plantilla digitalizada la cual se guarda para ser consultada posteriormente.
+La figura \ref{fig:glade} ilustra brevemente el proceso realizado por el sensor.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=.2]{./Figures/huella.png}
+	\caption{Procesamiento de huella dactilar.}
+	\label{fig:huella}
+\end{figure}
+
+\subsection{Módulo lector de huella Adafruit ZFM-20}
+Módulo basado en el chip AS608 para el procesamiento digital el cual permite la representación, el cálculo, extracción de características y  cotejamiento de huellas.
+Entre los principales atributos se destacan:
+
+\begin{itemize}
+\item Fuente de alimentación: 3.6 – 6V. 
+\item Corriente de operación: 120mA max.
+\item Tiempo de respuesta: < 1s.
+\item Área activa del sensor: 14mm x 18mm.
+\item Capacidad de almacenamiento: hasta 162 patrones.
+\item Rangos de seguridad programables: 1 a 5.
+\item Taza de rechazo falso: < 1 %.
+\item Interfaz de comunicación: UART (TTL), USB.
+\item Velocidad de transmisión: 9600, 19200, 28800, 38400, 57600.
+\end{itemize}
+
+Otras características importantes de mencionar son la presencia de memoria RAM de 72K bytes, un buffer para almacenamiento de imágenes y dos buffers de archivo para procesamiento los cuales pueden ser accedidos aleatoriamente mediante las instrucciones del sistema. 
+
+El módulo posee además una base de datos conocida también como librería en la cual se realiza el almacenamiento de patrones de huellas en un espacio de memoria flash.
+
+Para la comunicación del sistema con el sensor se utiliza el interfaz UART y para tal propósito el dispositivo lector de huellas establece su propio protocolo el cual consta de comandos y datos enviados en paquetes con los elementos mostrados en la tabla \ref{tab:paquetes}.
+
+\begin{table}[h]
+	\centering
+	\caption[caption corto]{Elementos que conforman el paquete de datos para el protocolo de comunicación}
+	\begin{tabular}{l c c @{\hspace{1cm}} p{6cm} }    
+		\toprule
+		\textbf{Nombre} 	 & \textbf{Símbolo}  & \textbf{Tamaño}		& \textbf{Descripción}   \\
+		\midrule
+		Inicio	 	& START 	& 2 bytes 			& Valor fijo 0xEF01.\\		
+		Dirección	& ADDER 	& 4 bytes 			& Permite la identificación de varios sensores sobre un mismo sistema, por defecto su valor es 0xFFFFFFFF.\\
+		Id de paquete	 	& ID 	& 1 byte 			& 0x01 indica envio de comando, 0x07 indica respuesta del sensor.\\
+		Longitud	 & LENGTH 	& 2 bytes 			& Tamaño de la carga de datos a recibir\\	
+		Datos	 	& DATA	 	& -- 			&Pueden ser instrucciónes, datos o parámetros.\\
+		Checksum	 	& SUM 	& 2 bytes 			& Utilizado para comprobar un envío correcto.\\		
+		\bottomrule
+		\hline
+	\end{tabular}
+	\label{tab:paquetes}
+\end{table}
+
+Existen diversos comandos que permiten trabajar con todas las funcionalidades del módulo lector, la tabla \ref{tab:comandos} muestra un resumen de los principales.
+
+\begin{table*}[h]
+	\centering
+	\caption[caption corto]{Principales comandos para el módulo lector de huella}
+	\begin{tabular}{l c l}    
+		\toprule
+		\textbf{Tipo}  & \textbf{Código}  & \textbf{Descripción}\\
+		\midrule
+		Sistema	 	& 0x12 	& Cambiar contraseña.\\		
+		Sistema	 	& 0x15 	& Cambio de dirección.\\
+		Comunicación & 0x0e & Cambio de parámetros.\\	
+		Imagen	 	& 0x01 	& Cargar imagen.\\
+		Imagen	 	& 0x02 	& Extracción de caracteristica.\\
+		Imagen	 	& 0x03 	& Montaje de imágenes.\\
+		Proceso	 	& 0x04 	& Buscar modelo.\\
+		Proceso	 	& 0x06 	& Gaurdar modelo.\\				
+		Proceso	 	& 0x0c 	& Borrar  modelo.\\				
+		\bottomrule
+		\hline
+	\end{tabular}
+	\label{tab:comandos}
+\end{table*}
+
+Una vez configurados los parámetros para la comunicación que por defecto están establecidos con un baud rate de 57600, 8 bits de datos y 1 bit de parada; se envía la trama iniciando desde el bit más significativo respetando el orden mostrado en la tabla 3.1.
+En el caso de la recepción de la respuesta el procedimiento es el mismo.
+
+La figura \ref{fig:tablasensor} muestra el ejemplo del formato de envío del código para adquirir la imagen de una huella y el formato de respuesta esperado.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=.3]{./Figures/tablasensor.png}
+	\caption{Formato para envío/recepción de paquetes de datos.}
+	\label{fig:tablasensor}
+\end{figure}
+
+En el ejemplo expuesto, la confirmación por parte del sensor podría tener tres posibles casos listados a continuación:
+
+\begin{itemize}
+\item Código de confirmación = 0x00 correspondiente a un proceso exitoso. 
+\item Código de confirmación = 0x01 correspondiente a una recepción de datos fallida. 
+\item Código de confirmación = 0x02 correspondiente a una adquisición vacía, es decir, no hay un dedo sobre el sensor.
+\end{itemize}
+
+
+%------------------------------------------------------------------------------------
+%------------------------------------------------------------------------------------
+\section{Sistema General}
+%------------------------------------------------------------------------------------
+%------------------------------------------------------------------------------------
+\section{Subsistema GUI (logic Service)}
+%------------------------------------------------------------------------------------
+%------------------------------------------------------------------------------------
+\section{Subsistema para control del sensor de huella}
+%------------------------------------------------------------------------------------
+%------------------------------------------------------------------------------------
+\section{Subsistema data-web}
