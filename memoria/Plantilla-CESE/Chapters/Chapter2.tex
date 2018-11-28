@@ -5,16 +5,24 @@
 %----------------------------------------------------------------------------------------
 %	SECTION 1
 %----------------------------------------------------------------------------------------
-En esta sección se presenta el contexto en el cual se realizó el diseño, la descripción de los requerimientos y las fases mas importantes de la ejecución del proyecto.
-\section{Planteamiento}
+En esta sección se presenta el contexto general en el cual se realizó el diseño, los elementos que conforman el sistema, la descripción de los requerimientos base y la presentación de las diferentes fases mediante las que se abordó la realización del proyecto.
+
+Además se establece una perspectiva global de la ejecución mediante la planificación seguida durante el desarrollo.
+  
+\section{Visión general de los elementos constitutivos}
 %------------------------------------------------------------------------------------
-El sistema implementado se centra en la utilización de una placa de desarrollo embebida, el uso de un módulo-sensor lector de huellas, una pantalla para interacción con el usuario y el diseño y utilización de software necesario para la correlación de los diferentes elementos constitutivos.
-La placa de desarrollo embebida puede ser definida como un sistema electrónico basado en microprocesador diseñado para realizar funciones 	dedicadas.
-En el caso del módulo-sensor de adquisición de huella digital se trata de un dispositivo capaz de capturar la imagen de la huella, procesarla y almacenarla para su posterior utilización.
+El sistema implementado se centra en una placa de desarrollo embebida, un módulo-sensor lector de huellas y una pantalla para interacción con el usuario.
+
+La placa de desarrollo embebida puede ser definida como un sistema electrónico basado en un microprocesador diseñado para realizar funciones dedicadas.
+
+En el caso del módulo-sensor de adquisición de huella digital es un dispositivo capaz de capturar la imagen de la huella, procesarla y almacenarla para su posterior utilización.
+
 Para una fácil manipulación del sistema por parte del usuario, se incorpora una interfaz gráfica desplegada sobre una pantalla táctil.
+
 En el caso del software, se selecciona como base una distribución del sistema operativo Linux para sistemas embebidos.
+
 \subsection{Descripción funcional}
-La única via para acceder al sistema por parte del usuario es através de la interfaz gráfica la cual cuenta con un menú  de tres partes principales las cuales son:
+La única vía para acceder al sistema por parte del usuario es a través de la interfaz gráfica la cual cuenta con un menú  de tres partes principales:
 
 \begin{itemize}
 \item Menú para acceso biométrico (acceso por reconocimiento de huella).	
@@ -23,57 +31,53 @@ La única via para acceder al sistema por parte del usuario es através de la in
 \end{itemize}
 
 De esta forma el usuario puede acceder únicamente si su huella  o clave esta registrada con anterioridad. Cabe mencionar que la asignación de claves y registro de usuarios es privilegio del usuario principal.
-En caso de ser reconocida la huella o clave del usuario, se activa una salida digital de la placa de desarrollo (que en el futuro comandará una actuador final) y se despliega en pantalla un mensaje de notificación de bienvenida o caso contrario un mensaje de usuario no reconocido.
-El usuario principal tiene además la posibilidad de acceder a una pagina web donde se guarda el registro de los últimos accesos.
-La figura \ref{fig:funcional}'' muestra la secuencia funcional del sistema.
+
+En caso de ser reconocida la huella o clave del usuario, se activa una salida digital de la placa de desarrollo (que en el futuro comandará un actuador) y se despliega en pantalla un mensaje de notificación de bienvenida o caso contrario un mensaje de usuario no reconocido.
+
+El usuario principal tiene además la posibilidad de acceder a una página web donde se guarda el registro de los últimos accesos.
+La figura \ref{fig:funcional} muestra la secuencia funcional del sistema.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=.3]{./Figures/funcional.png}
-	\caption{Secuencia funcional del sistema.}
+	\includegraphics[scale=.9]{./Figures/funcional.pdf}
+	\caption{Diagrama de secuencia del sistema.}
 	\label{fig:funcional}
 \end{figure}
 
-Para lograr este objetivo se diseñó un firmware con los siguientes módulos y sub módulos operativos.
+Para lograr este objetivo se diseñó un firmware con el diagrama de bloques de la figura\ref{fig:bloques} .
 
-\begin{itemize}
-\item dbService: Servicio para manejo de base de datos y servidor TCP.	
-\item logicService: Servicio para manejo de interfaz gráfica y cliente TCP.
-\item adafruit fingerprint: Sub módulo para manejo del sensor de huella.
-\item db lib: Sub módulo para lectura escritura de base de datos sobre SQLite.
-\item web: Sub módulo para desarrolo de la interfaz web.
-\end{itemize}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.6]{./Figures/bloques.pdf}
+	\caption{Diagrama de bloques de la arquitectura de firmware diseñada.}
+	\label{fig:bloques}
+\end{figure}
+
  
-Al desarrollar un sistema modular de este tipo se logra convertir la aplicación de un sensor de reconocimiento de huella en un posible sistema distribuido de seguridad mas completo ya que resulta relativamente sencillo anexar mas clientes TCP que pueden a su ves manejar nuevas interfaces gráficas con nuevos sensores y con distintas funcionalidades nuevas.
+Al desarrollar un sistema modular de este tipo se logra convertir la aplicación de un sensor de reconocimiento de huella en un posible sistema distribuido de seguridad, resultando en un sistema más completo. Resulta relativamente sencillo anexar mas clientes TCP que pueden a su vez manejar nuevas interfaces gráficas con nuevos sensores y con distintas funcionalidades.
 
 %------------------------------------------------------------------------------------
 \section{Requerimientos}
 %------------------------------------------------------------------------------------
-A continuación el detalle de los requerimientos.
+A continuación se presenta el detalle de los requerimientos.
 
 1.- Requerimientos del sistema:
 
 \begin{itemize}
-\item 1.1. Interfaz de usuario simple y claro.	
+\item 1.1. Interfaz de usuario simple.	
 \item 1.2.El sistema posee dos modos de operación principales, biométrico y password.
 \item 1.3. En modo password se realiza la identificación del usuario mediante la validación de una clave numérica de cuatro dígitos.
 \item 1.4. En modo biométrico se realiza la dentificación del usuario mediante la validación del patrón característico de la huella digital correspondiente al dedo indice de la mano derecha.
-\item 1.5. El sistema permite a un usuario identificado como principal, modificar la base de datos del sistema permitiendole crear nuevos usuarios o borrarlos.
+\item 1.5. El sistema permite a un usuario identificado como principal, modificar la base de datos del sistema permitiendo crear nuevos usuarios o borrarlos.
 \item 1.6. El usuario identificado como principal tiene la opción de acceder a un registro de actividad que le informe que usuario y a que hora tuvo acceso.
 \item 1.7. El sistema implementa el modo de acceso permitido como la activación temporal de una salida digital de la placa de desarrollo y un mensaje en pantalla.
 \end{itemize}
 
-2.- Componentes del sistema:
-\begin{itemize}
-\item 2.1 Se utiliza una placa de desarrollo embebida comercial para control central del proyecto.
-\item 2.2 El sistema cuenta con un módulo lector de huellas.
-\item 2.3 Forma parte del prototipo un módulo para la interfaz gráfica con tecnología touch.
-\end{itemize}{}
-
 %------------------------------------------------------------------------------------
 \section{Planificación}
 %------------------------------------------------------------------------------------
-A contunuación se muestra el desglose de tareas del proyecto.
+A continuación se muestra el desglose de tareas del proyecto.
+
 1. Planificación (35h).
 \begin{itemize}
 \item Realizar plan del proyecto.(15h)
@@ -82,7 +86,7 @@ A contunuación se muestra el desglose de tareas del proyecto.
 \end{itemize} 
 2. Investigación Preliminar.(105 hs)
 \begin{itemize}
-\item Buscar info. sobre sistemas de control de acceso por parámetros biométricos.(10 hs)
+\item Buscar información sobre sistemas de control de acceso por parámetros biométricos.(10 hs)
 \item Buscar información sobre módulos de adquisición de huellas dactilares.(10 hs)
 \item Buscar información sobre módulos display con tecnología touch.(10 hs)
 \item Buscar información acerca de entornos para programación de GUIs.(15 hs)
@@ -109,13 +113,13 @@ A contunuación se muestra el desglose de tareas del proyecto.
 6. Integración del sistema. (100h)
 7. Procesos finales. (100h)
 
-El diagrama Activity on Node final del proyecto se observa en la figura \ref{fig:none}'', en esta se puede apreciar el orden seguido para la ejecución de las tareas, las cuales en total suman 710 horas.
+El diagrama Activity on Node final del proyecto se observa en la figura \ref{fig:none}, en ésta se puede apreciar el orden para la ejecución de las tareas, las cuales en total suman 710 horas.
 
-Puede notarse también que el camino crítico el cual contempla las tareas que no pueden tener retraso (caso contrario comprometerían el tiempo de ejecución y entrega del proyecto) requieren una inversión de 535 horas.
+Puede notarse que el camino crítico requiere una inversión de 535 horas.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=.35]{./Figures/none.png}
+	\includegraphics[scale=.8]{./Figures/none.pdf}
 	\caption{Diagrama Activity on Node.}
 	\label{fig:none}
 \end{figure}

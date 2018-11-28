@@ -54,6 +54,9 @@ headsepline, % Uncomment to get a line under the header
 \usepackage{caption}
 \usepackage{subcaption}
 
+\usepackage{float}
+
+
 %------------------------
 \usepackage{listings}
 
@@ -90,9 +93,9 @@ headsepline, % Uncomment to get a line under the header
 \supervisor{Esp.Ing. Ernesto Gigliotti} % El nombre del director, se usa en la carátula y se puede usar el cualquier lugar del documento con el comando \supname
 \degree{Especialista en Sistemas Embebidos } % Nombre del grado, se usa en la carátula y se puede usar el cualquier lugar del documento con el comando \degreename
 \author{Ing. Christian Yánez} % Tu nombre, se usa en la carátula y se puede usar el cualquier lugar del documento con el comando \authorname
-\juradoUNO{Esp. Ing. Diego Fernández(FIUBA)} % Nombre y pertenencia del un jurado se usa en la carátula y se puede usar el cualquier lugar del documento con el comando \jur1name
+\juradoUNO{Esp. Ing. Diego Fernández (FIUBA)} % Nombre y pertenencia del un jurado se usa en la carátula y se puede usar el cualquier lugar del documento con el comando \jur1name
 \juradoDOS{Esp. Ing. Danilo Zecchin (FIUBA)} % Nombre y pertenencia del un jurado se usa en la carátula y se puede usar el cualquier lugar del documento con el comando \jur2name
-\juradoTRES{Esp. Ing. Carlos Mancón(FIUBA)} % Nombre y pertenencia del un jurado se usa en la carátula y se puede usar el cualquier lugar del documento con el comando \jur3name
+\juradoTRES{Esp. Ing. Carlos Mancón (FIUBA)} % Nombre y pertenencia del un jurado se usa en la carátula y se puede usar el cualquier lugar del documento con el comando \jur3name
 \fechaINICIO{mayo de 2018}
 \fechaFINAL{diciembre de 2018}
 
@@ -179,18 +182,14 @@ Jurados:\\
 %The Thesis Abstract is written here (and usually kept to just this page). The page is kept centered vertically so can expand into the blank space above the title too\ldots
 \centering
 
-En el siguiente documento se describe el desarrollo de un sistema de control de acceso biométrico implementado mediante la utilización de Linux sobre una plataforma de desarrollo embebida.
+En el siguiente documento se describe el desarrollo de un sistema de control de acceso biométrico implementado mediante la utilización de una plataforma de desarrollo embebida.Dicho sistema cuenta  con el diseño de una interfaz gráfica sobre una pantalla con tecnología touch.
 
-Dicho sistema cuenta  con el diseño de una interfaz gráfica sobre una pantalla con tecnología touch.
-
-El sistema permite a los usuarios tener permisos de acceso en caso de un reconocimiento efectivo 
-de la huella digital. El permiso de acceso se implementa mediante un mensaje sobre la interfaz gráfica y la activación temporal de una salida digital.
+El sistema otorga a los usuarios permiso de acceso, el cual se implementa mediante un mensaje sobre la interfaz gráfica y la activación temporal de una salida digital en caso de un reconocimiento efectivo 
+de la huella digital. 
  
-Por otro lado, un único usuario reconocido como privilegiado tiene la posibilidad de realizar configuraciones en el sistema de usuarios y acceder de forma remota a un historial de accesos previos. 
-
 El proyecto nace como un propósito personal del autor
-mediante el cual se aplican varias de las herramientas aprendidas durante la carrera de especialización entre las cuales se destacan: sistemas operativos de propósito general (kernel de linux, procesos y threads, gestión de procesos, comunicacion entre procesos, Sockets), protocolos de comunicación (periférico UART),
- programación de micro controladores (Programación orientada a eventos, software modular, diseño de máquinas de estado) entre las mas importantes.
+mediante el cual se aplican varias de las herramientas aprendidas durante la carrera de especialización entre las cuales se destacan: sistemas operativos de propósito general (kernel de linux, procesos y threads, gestión de procesos, sockets), protocolos de comunicación (periférico UART),
+ programación de micro controladores (programación orientada a eventos, software modular, diseño de máquinas de estado) entre las más importantes.
 
 \end{abstract}
 
@@ -206,7 +205,7 @@ A mi madre Martha, por su valioso ejemplo y apoyo incondicional. \textbf{}
 
 A mi director, por su guía, consejo y ayuda.
 
-A mis profesores y compañeros, por su colaboración apoyo y paciencia. 
+A mis profesores y compañeros, por su colaboración  y paciencia. 
 
 \end{acknowledgements}
 

@@ -4,7 +4,7 @@
 
 \label{Chapter1} % For referencing the chapter elsewhere, use \ref{Chapter1} 
 \label{IntroGeneral}
-
+En este capítulo se explica qué es un sistema de acceso biométrico y su importancia, además se presentan las necesidades a las que responde el proyecto junto con su objetivo.
 %----------------------------------------------------------------------------------------
 
 % Define some commands to keep the formatting separated from the content 
@@ -20,19 +20,30 @@
 %\section{Introducción}
 
 %----------------------------------------------------------------------------------------
-\section{Sistemas de control de accceso biométrico}
+\section{Sistemas de control de acceso biométrico}
+El uso de los rasgos físicos intrínsecos de las personas como herramienta para su reconocimiento
+en sistemas de control es en la actualidad uno de los métodos más seguros y su implementación
+va en aumento. 
 
-Partiendo de la definición de biometría como la toma de medidas estandarizadas para el reconocimiento de personas basado en una o mas caracteristicas físicas o conductuales, se puede definir entonces a los sistemas de control basados en biometría como sistemas que utilizan dichas caracteristicas como fuente de información que posteriormente a ser analizadas servirán para determinar el comportamiento del mencionado sistema, en el caso particular de este proyecto, determinarán permisos de acceso para el usuario.
-Existen dos tipos básicos de biometría; la de comportamiento, dentro de la cual se analizan caracteristicas como la forma de caminar u ondas cerebrales y por otro lado la biometría fisiológica dentro de la cual se cubren los análisis de huella digital, rasgos faciales, forma de manos, retina, firma, vena, voz y análisis genético.
-De los análisis mencionados, el mas popular por su gran nivel precisión en cuanto a reconocimiento es el análisis de huella digital.  
-El uso de los rasgos físicos intrínsecos de las personas como herramienta para su reconocimiento en sistemas de control es en la actualidad uno de los métodos más seguros y su implementación va en aumento. Los sistemas biométricos evitan el tráfico de passwords o tarjetas de identificación que son métodos tradicionales y con gran deficiencia en cuanto a seguridad.
-La utilización de la tecnología biométrica brinda no solo la posibilidad de implementar  controles de acceso, son también utilizados para el reconocimiento en sistemas gubernamentales, transacciones bancarias, servicios de salud entre los más importantes.
-La figura \ref{fig:sistemas_bio}'' ilustra las potencialidades de los sitemas de acceso biométricos.
+Los sistemas biométricos evitan el tráfico de passwords o tarjetas de
+identificación que son métodos tradicionales y con gran deficiencia en cuanto a seguridad.
 
-\begin{figure}[h]
+La utilización de la tecnología biométrica brinda no solo la posibilidad de implementar controles
+de acceso, son también utilizados para el reconocimiento en sistemas gubernamentales,
+transacciones bancarias, servicios de salud entre los más importantes.
+
+Partiendo de la definición de biometría como la toma de medidas estandarizadas para el reconocimiento de personas basado en una o más características físicas o conductuales, se establece entonces que los sistemas de control biométricos utilizan tales rasgos como fuente de información que luego de ser analizados servirán para determinar el comportamiento de determinado proceso, en el caso particular de este proyecto, establecen permisos de acceso para el usuario.
+
+Existen dos tipos básicos de biometría; la de comportamiento, dentro de la cual se analizan características como la forma de caminar u ondas cerebrales y por otro lado la biometría fisiológica dentro de la cual se cubren los análisis de huella digital, rasgos faciales, forma de manos, retina, firma, vena, voz y análisis genético.
+
+De los análisis mencionados, el más popular por su gran nivel de precisión en cuanto a reconocimiento es el análisis de huella digital.  
+
+La figura \ref{fig:sistemas_bio} ilustra las potencialidades de los sistemas de acceso biométricos.
+
+\begin{figure}[H]
 	\centering
-	\includegraphics[scale=.2]{./Figures/sistemas_bio.png}
-	\caption{Aplicaciónes con sistemas biométricos}
+	\includegraphics[height=10cm,width=10cm]{./Figures/sistemas_bio.pdf}
+	\caption{Aplicación basada en biometría}
 	\label{fig:sistemas_bio}
 \end{figure}
 
@@ -54,15 +65,14 @@ La figura \ref{fig:sistemas_bio}'' ilustra las potencialidades de los sitemas de
 
 \section{Motivación}
 
-Aplicar los conocimientos adquiridos durante la carrera para desarrollar un producto tecnológico enfocado en cubrir necesidades puntuales.
+La principal motivación del presente trabajo se enfoca en el orden de lo académico, se desea mediante el mismo aplicar los conocimientos adquiridos durante la carrera para desarrollar un producto tecnológico enfocado en cubrir requerimientos puntuales.
 
-Finalizar exitosamente la carrera mencionada e involucrarse con los procesos de diseño y construcción de sistemas Embebidos para una futuro emprendimiento personal. 
+Se anhela finalizar exitosamente la especialización e involucrarse con los procesos de diseño y construcción de sistemas embebidos para un eventual emprendimiento personal. 
 
-Desarrollar un prototipo base de identificación biométrica que a futuro sea implementado en sistemas de vigilancia escolares o domiciliarios.
+Se pretende además, elaborar un producto final que a futuro pueda ser comercializado o acoplado a sistemas de seguridad más robustos y con aplicaciones específicas, por ejemplo, un prototipo base de identificación biométrica que pueda ser implementado en sistemas de vigilancia escolares o domiciliarios.
 
-Implementar un sistema de alta tecnología que represente una opción frente a los módulos comerciales.
+Se espera también implementar un sistema de alta tecnología que represente una opción frente a los módulos comerciales con el objetivo de acercar la tecnología a un mayor número de personas.
 
-Si bien la principal motivación del presente trabajo se enfoca en el orden de lo académico, se pretende elaborar un producto final que a futuro pueda ser comercializado o acoplado a sistemas de seguridad más robustos y con aplicaciones específicas.
 
 
 
@@ -82,33 +92,34 @@ Si bien la principal motivación del presente trabajo se enfoca en el orden de l
 
 \section{Objetivos y alcance}
 
-El desarrollo de este proyecto incluye la implementación de una interfaz gráfica mediante una pantalla que incorpora la tecnología touch, el manejo de un módulo lector óptico de huellas digitales, la incorporación del sistema de acceso alternativo mediante la utilización de password y el accionamiento de una salida digital la cual a futuro podrá comandar actuador para cerradura eléctrica.
+El desarrollo de este proyecto incluye la implementación de una interfaz gráfica mediante una pantalla que incorpora la tecnología touch, el manejo de un módulo lector óptico de huellas digitales, la incorporación del sistema de acceso alternativo mediante la utilización de password y la activación de una salida digital la cual a futuro podrá comandar el actuador para una cerradura eléctrica.
 
-Se incluye además un sistema de monitoreo remoto al cual el usuario principal tiene acceso y mediante el cual se informa que usuario y a que hora tuvo acceso.
+Se incluye además un sistema de monitoreo al que el usuario principal puede acceder y mediante el cual se informa el usuario registrado y la hora de acceso.
+
 No se incluye la opción de acceso remoto ni comunicaciones con otros sistemas.
 
-La figura \ref{fig:hard_disp}'' ilustra la disposición de hardware del sistema y la figura \ref{fig:modulos}'' muestra la estructura en modulos funcionales del mismo.
-
-\begin{figure}[h]
+La figura \ref{fig:hard_disp} ilustra la disposición de hardware del sistema y la figura \ref{fig:modulos} muestra los elementos funcionales del mismo.
+%height=7cm,width=5cm
+\begin{figure}[H]
 	\centering
-	\includegraphics[scale=.26]{./Figures/hard_disp.png}
+	\includegraphics[scale=1]{./Figures/hard_disp.pdf}
 	\caption{Disposición de hardware del sistema.}
 	\label{fig:hard_disp}
 \end{figure}
-
-\begin{figure}[h]
+%height=11cm,width=6cm
+\begin{figure}[H]
 	\centering
-	\includegraphics[scale=.26]{./Figures/modulos.png}
-	\caption{Módulos funcionales del sistema.}
+	\includegraphics[scale=1]{./Figures/modulos.pdf}
+	\caption{Elementos funcionales del sistema.}
 	\label{fig:modulos}
 \end{figure}
 
 El proyecto esta basado en los siguientes lineamientos:
 
 \begin{itemize}
-\item Los Componentes para el desarrollo son abiertos y de libre acceso.	
+\item Los componentes para el desarrollo son abiertos y de libre acceso.	
 \item Interfaz amigable con el usuario final.
-\item Mantiene escalabilidad para futuras implementaciones.
+\item Escalable.
 \end{itemize}
 
 El proyecto desarrollado incluyó:

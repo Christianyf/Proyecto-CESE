@@ -1,5 +1,7 @@
 \chapter{Diseño e Implementación} % Main chapter title
 
+En este capítulo se presentan las características del hardware utilizado y cómo se desarrollo e implementó el firmware dentro del entorno diseñado. 
+
 \label{Chapter3} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
 \definecolor{mygreen}{rgb}{0,0.6,0}
 \definecolor{mygray}{rgb}{0.5,0.5,0.5}
@@ -88,10 +90,13 @@
 
 \section{Plataforma de desarrollo}
 %------------------------------------------------------------------------------------
-Uno de los aspectos mas importantes dentro de la ejecución del proyecto es la correcta selección de la plataforma de desarrollo ya que de esta dependerá todas las funcionalidades a crear, además, una correcta selección puede facilitar  la implementación de los diferentes requerimientos, es así que que una mala decisión en este punto puede ocasionar retrasos significativos e incluso puede comprometer la culminación del proyecto.
-Para el caso puntual de esta aplicación al considerar que los requerimientos demandan alta capacidad de almacenamiento, soporte para sistema operativo, interfaces de comunicación, conectividad y uso de periféricos externos y sin dejar de lado la parte económica, se establece como la mejor opción la placa Raspberry Pi 3 modelo B+ cuyas principales características se detallan a continuación.
-Raspberry Pi es un ordenador de bajo costo pero altamente potente y de dimensiones muy pequeñas , fue desarrollada con la intención de facilitar la enseñanza de la informática y para que pueda ser utilizada para grandes proyectos como para aficionados de la electrónica y computación.
-Se han lanzado ya varios modelos previos de esta placa los mismos que incorporan nuevas características y funcionalidades sin que esto signifique incompatibilidad entre los diferentes modelos.
+Uno de los aspectos importantes dentro de la ejecución del proyecto es la correcta selección de la plataforma de desarrollo ya que de ésta dependen todas las funcionalidades a crear. Además, una correcta selección puede facilitar  la implementación de los diferentes requerimientos.
+
+Para el caso puntual de esta aplicación, al considerar que los requerimientos demandan alta capacidad de almacenamiento, soporte para sistema operativo, interfaces de comunicación, conectividad y uso de periféricos externos, se establece como la mejor opción la placa Raspberry Pi 3 modelo B+ cuyas principales características se detallan a continuación.
+
+Raspberry Pi es un ordenador de bajo costo pero altamente potente y de dimensiones muy pequeñas , fue desarrollada con la intención de facilitar la enseñanza de la informática y para que pueda ser utilizada por profesionales para grandes proyectos como por aficionados de la electrónica y computación.
+
+
 Características técnicas:
 \begin{itemize}
 \item Procesador: Broadcom BCM2837BO Cortex-A53 (ARMv8) 64 bit
@@ -111,33 +116,36 @@ Características técnicas:
 \item Micro USB (Alimentación) 
 \end{itemize}
 \end{itemize}
-Otra de las ventajas del modelo seleccionado es el soporte wifi 802.11ac además de la opción de soporte para el estándar Power-over-Ethernet (PoE).
-La figura \ref{fig:rasp}''muestra la distribución de los diferentes módulos constitutivos de la Raspberry.
+Otra de las ventajas del modelo seleccionado es el soporte wifi 802.11ac y del estándar Power-over-Ethernet (PoE).
 
-\begin{figure}[h]
+La figura \ref{fig:rasp} muestra la distribución de los diferentes módulos constitutivos de la Raspberry.
+
+\begin{figure}[H]
 	\centering
-	\includegraphics[scale=.3]{./Figures/rasp.png}
+	\includegraphics[scale=.8]{./Figures/rasp.pdf}
 	\caption{Raspberry Pi 3 B+ módulos constitutivos.}
 	\label{fig:rasp}
 \end{figure}
  
  \subsection{Linux embebido}
- El término Linux embebido se refiere al uso del núcleo Linux en un sistema embebido, en este caso la placa de desarrollo seleccionada.
+El término "Linux embebido" se refiere al uso del núcleo Linux en un sistema embebido, en este caso la placa de desarrollo seleccionada.
 Dicho núcleo combinado con un conjunto de utilidades de software libre  se ajustan dentro del hardware para el desarrollo del proyecto.
-Para tal propósito se ha seleccionado el sistema operativo Raspbian que es la distribución por excelencia para Raspberry, tal distribución es la mas completa y optimizada de las existentes la cual cuenta también con el respaldo oficial.
-Raspbian OS esta basada en la distro Debian Wheezy (Debian 7.0) optimizada para Raspberry.
-La figura \ref{fig:raspbian} muestra la versión Raspbian Lite, versión con interfaz de escritorio, ejecutandose sobre la placa embebida.
+Para tal propósito se ha seleccionado el sistema operativo Raspbian que es la distribución por excelencia para Raspberry.
 
-\begin{figure}[h]
+Raspbian OS esta basado en la distro Debian Wheezy (Debian 7.0) optimizado para Raspberry.
+
+La figura \ref{fig:raspbian} muestra la distribución Raspbian Lite en su versión con interfaz de escritorio, ejecutándose sobre la placa embebida.
+
+\begin{figure}[H]
 	\centering
-	\includegraphics[scale=.3]{./Figures/raspbian.png}
+	\includegraphics[scale=.35]{./Figures/raspbian.pdf}
 	\caption{Interfaz Raspbian Lite.}
 	\label{fig:raspbian}
 \end{figure}
 
- \subsection{Pantalla táctil element 14}
+ \subsection{Pantalla táctil}
 Pantalla de 7 pulgadas diseñada especialmente para la placa de desarrollo seleccionada y gran variedad de placas de la misma familia. 
-Este accesorio ha sido integrado en gran cantidad de proyectos tanto de información y entretenimiento así como de tecnología. 
+Este accesorio ha sido integrado en gran cantidad de proyectos tanto de información y entretenimiento como de tecnología. 
 Entre sus principales características se citan:
 
 \begin{itemize}
@@ -147,8 +155,10 @@ Entre sus principales características se citan:
 \end{itemize}
 
 Para su conexión con la Raspberry Pi utiliza una placa para adaptar señales de alimentación y señales lógicas, además, la comunicación se realiza mediante el puerto y protocolo  DSI (Display Serial Interface).
-Gracias a la la implementación del sistema operativo, la pantalla funciona como un dispositivo “plug and play” por lo que no fue necesario el desarrollo de librerías especiales.
-La figura \ref{fig:raspbian} muestra los elementos constitutivos y necesarios para la conexión de la pantalla con la placa de desarrollo.
+
+Gracias a la la implementación del sistema operativo, la pantalla funciona como un dispositivo “plug and play” por lo que no fue necesario el desarrollo de bibliotecas adicionales.
+
+La figura \ref{fig:pantalla} muestra los elementos constitutivos y necesarios para la conexión de la pantalla con la placa de desarrollo.
 
 \begin{figure}[h]
 	\centering
@@ -160,20 +170,20 @@ La figura \ref{fig:raspbian} muestra los elementos constitutivos y necesarios pa
 %------------------------------------------------------------------------------------
 \section{Desarrollo de interfaz gráfica}
  \subsection{GTK+}
-GTK+ o GIMP Toolkit es una herramienta multiplataforma utilizada para crear interfaces gráficas de usuario, es una herramienta multiplataforma escrita en lenguaje C pero que permite el uso de otros lenguajes como Perl y Python.
+GTK+ o GIMP Toolkit es una herramienta utilizada para crear interfaces gráficas de usuario, es una herramienta multiplataforma escrita en lenguaje C con soporte para el uso de otros lenguajes como Perl y Python.
 
-GTK es software libre pero licenciado permite la creación de software libre como propietario.
+GTK es software libre aunque puede puede ser licenciado permitiendo la creación tanto de software libre como propietario.
 La herramienta se basa en una serie de librerías entre las cuales destacan:
 
 \begin{itemize}
 \item Glib: Proporciona los bloques básicos para construir aplicaciones y bibliotecas escritas en C, proporciona la implementación del bucle principal y funciones para el uso de cadenas y estructuras de datos comunes. 
 \item Gobject: Proporciona el sistema para manejo de objetos para el diseño y dibujo de texto internacional.
-\item GIO: Proporciona una atracción del sistema de archivos permitiendo a las aplicaciones acceder a los archivos remotos y locales consistentemente.
+\item GIO: Proporciona una abstracción del sistema de archivos permitiendo a las aplicaciones acceder a los mismos de forma local o remota consistentemente.
 \item GTK: Proporciona controles de interfaz de usuario y señales para los controles de usuario.
 \end{itemize}
 
 \subsection{Glade}
-Glade es un entorno gráfico para el desarrollo de interfaces gráficas basadas en GTK+ el cual genera un archivo en formato XML  y gracias a esta propiedad permite el desarrollo con soporte para diferentes lenguajes de programación como C, Java, Python entre otros.
+Glade es un entorno gráfico para el desarrollo de interfaces gráficas basadas en GTK+ el cual genera un archivo en formato XML  y gracias a esta propiedad permite el desarrollo con soporte para diferentes lenguajes de programación.
 La figura \ref{fig:glade} muestra el entorno de desarrollo de Glade.
 
 \begin{figure}[h]
@@ -185,7 +195,7 @@ La figura \ref{fig:glade} muestra el entorno de desarrollo de Glade.
 
 El entorno se divide en tres columnas principales, a la izquierda la paleta de elementos con un conjunto de bloques como botones, contenedores y ventanas los cuales son posteriormente arrastrados hacia la columna central que ofrece la vista del proyecto. En esta locación se realiza la disposición de los componentes de nuestra interfaz según las necesidades del diseño.
 
-Finalmente la columna de la derecha muestra el diagrama de árbol de la interfaz creada y muestra también las diferentes propiedades de cada elemento como sus dimensiones, etiqueta, nombre o identificador y señales asociadas que son funciones llamadas para su ejecución luego de ocurrido cierto evento ligado al mencionado elemento.
+Finalmente la columna de la derecha muestra el diagrama de árbol de la interfaz creada y también las diferentes propiedades de cada elemento como sus dimensiones, etiqueta, nombre o identificador y señales asociadas para su ejecución luego de ocurrido determinado evento.
 
 Para el desarrollo de la presente memoria se efectuó el siguiente método de trabajo para cada una de las páginas desarrolladas. 
 
@@ -200,8 +210,8 @@ Finalmente todo el diseño se guarda como un archivo con extensión (.glade) el 
 \subsection{Lectores ópticos reflexivos}
 El funcionamiento del sensor  de huella comienza luego de  colocar el dedo sobre la superficie de cristal del mismo la cual esta iluminada mediante un diodo led. La luz incide sobre el dedo causando el efecto de reflexión, este efecto se manifiesta con la aparición de zonas mas obscuras en las crestas de la huella y zonas mas claras en los valles.
 
-La imagen recogida es procesada en busca de características relevantes (Minucias), luego de esto se genera una plantilla digitalizada la cual se guarda para ser consultada posteriormente.
-La figura \ref{fig:glade} ilustra brevemente el proceso realizado por el sensor.
+La imagen recogida es procesada en busca de características relevantes (Minucias), luego de esto, se genera una plantilla digitalizada la cual se guarda para ser consultada posteriormente.
+La figura \ref{fig:huella} ilustra brevemente el proceso realizado por el sensor.
 
 \begin{figure}[h]
 	\centering
@@ -211,7 +221,7 @@ La figura \ref{fig:glade} ilustra brevemente el proceso realizado por el sensor.
 \end{figure}
 
 \subsection{Módulo lector de huella Adafruit ZFM-20}
-Módulo basado en el chip AS608 para el procesamiento digital el cual permite la representación, el cálculo, extracción de características y  cotejamiento de huellas.
+Módulo basado en el chip AS608 para el procesamiento digital el cual permite la representación, cálculo, extracción de características y  cotejamiento de huellas.
 Entre los principales atributos se destacan:
 
 \begin{itemize}
@@ -226,7 +236,7 @@ Entre los principales atributos se destacan:
 \item Velocidad de transmisión: 9600, 19200, 28800, 38400, 57600.
 \end{itemize}
 
-Otras características importantes de mencionar son la presencia de memoria RAM de 72K bytes, un buffer para almacenamiento de imágenes y dos buffers de archivo para procesamiento los cuales pueden ser accedidos aleatoriamente mediante las instrucciones del sistema. 
+Otras características importantes de mencionar son la presencia de memoria RAM de 72Kb, un buffer para almacenamiento de imágenes y dos buffers de archivo para procesamiento los cuales pueden ser accedidos aleatoriamente mediante las instrucciones del sistema. 
 
 El módulo posee además una base de datos conocida también como librería en la cual se realiza el almacenamiento de patrones de huellas en un espacio de memoria flash.
 
@@ -234,16 +244,16 @@ Para la comunicación del sistema con el sensor se utiliza el interfaz UART y pa
 
 \begin{table}[h]
 	\centering
-	\caption[caption corto]{Elementos que conforman el paquete de datos para el protocolo de comunicación}
+	\caption[Trama para protocolo de comunicación]{Elementos que conforman el paquete de datos para el protocolo de comunicación}
 	\begin{tabular}{l c c @{\hspace{1cm}} p{6cm} }    
 		\toprule
 		\textbf{Nombre} 	 & \textbf{Símbolo}  & \textbf{Tamaño}		& \textbf{Descripción}   \\
 		\midrule
 		Inicio	 	& START 	& 2 bytes 			& Valor fijo 0xEF01.\\		
 		Dirección	& ADDER 	& 4 bytes 			& Permite la identificación de varios sensores sobre un mismo sistema, por defecto su valor es 0xFFFFFFFF.\\
-		Id de paquete	 	& ID 	& 1 byte 			& 0x01 indica envio de comando, 0x07 indica respuesta del sensor.\\
+		Id de paquete	 	& ID 	& 1 byte 			& 0x01 indica envío de comando, 0x07 indica respuesta del sensor.\\
 		Longitud	 & LENGTH 	& 2 bytes 			& Tamaño de la carga de datos a recibir\\	
-		Datos	 	& DATA	 	& -- 			&Pueden ser instrucciónes, datos o parámetros.\\
+		Datos	 	& DATA	 	& -- 			&Pueden ser instrucciones, datos o parámetros.\\
 		Checksum	 	& SUM 	& 2 bytes 			& Utilizado para comprobar un envío correcto.\\		
 		\bottomrule
 		\hline
@@ -255,7 +265,7 @@ Existen diversos comandos que permiten trabajar con todas las funcionalidades de
 
 \begin{table*}[h]
 	\centering
-	\caption[caption corto]{Principales comandos para el módulo lector de huella}
+	\caption[Comandos módulo lector de huellas]{Principales comandos para el módulo lector de huella}
 	\begin{tabular}{l c l}    
 		\toprule
 		\textbf{Tipo}  & \textbf{Código}  & \textbf{Descripción}\\
@@ -264,10 +274,10 @@ Existen diversos comandos que permiten trabajar con todas las funcionalidades de
 		Sistema	 	& 0x15 	& Cambio de dirección.\\
 		Comunicación & 0x0e & Cambio de parámetros.\\	
 		Imagen	 	& 0x01 	& Cargar imagen.\\
-		Imagen	 	& 0x02 	& Extracción de caracteristica.\\
+		Imagen	 	& 0x02 	& Extracción de característica.\\
 		Imagen	 	& 0x03 	& Montaje de imágenes.\\
 		Proceso	 	& 0x04 	& Buscar modelo.\\
-		Proceso	 	& 0x06 	& Gaurdar modelo.\\				
+		Proceso	 	& 0x06 	& Guardar modelo.\\				
 		Proceso	 	& 0x0c 	& Borrar  modelo.\\				
 		\bottomrule
 		\hline
@@ -295,16 +305,404 @@ En el ejemplo expuesto, la confirmación por parte del sensor podría tener tres
 \item Código de confirmación = 0x02 correspondiente a una adquisición vacía, es decir, no hay un dedo sobre el sensor.
 \end{itemize}
 
+%------------------------------------------------------------------------------------
+%------------------------------------------------------------------------------------
+\section{Gestión de base de datos (SQLite)}
+En primera instancia no se planteó la posibilidad de trabajar con herramientas para la gestión de datos de usuarios, sin embargo, pensando en un desarrollo futuro, la portabilidad, la seguridad y un mejor desarrollo se implementa la herramienta SQLite.
+
+SQLite es una biblioteca escrita en lenguaje C que permite implementar un motor de base de datos transaccional de SQL(Structured Query Language) auto contenido y sin servidor. Esta librería de código abierto a diferencia de otras bases de datos no tiene un proceso de servidor separado, esto le permite leer y escribir directamente en archivos de disco ordinarios, con esto se logra tener una base de datos SQL  completa con múltiples tablas, índices, activadores y listas en un solo archivo de disco.
+
+El formato de archivo de la base de datos obtenido con SQLite es multiplataforma lo que le permite trabajar libremente con bases de datos en sistemas de 32 y 64 bits o entre arquitecturas big-endian y little-endian. 
+
+La versión utilizada (SQLite3) permite crear bases de  datos de hasta 2 Terabytes y contando con que es una librería que alcanza un promedio en tamaño de alrededor de 275 KiB, se establece que SQLite es ideal para ser implementada en sistemas embebidos.
+%------------------------------------------------------------------------------------
+\section{Sistema General}
+Para la implementación del proyecto se seleccionó el modelo cliente-servidor para comunicación TCP entre procesos corriendo sobre el sistema operativo Linux.
+
+Para tal propósito, el servidor llamado en adelante dbService, inicia el proceso de comunicación y queda a la espera de posibles clientes, puede soportar comunicación hasta con 100 clientes a los cuales asocia un canal propio y una rutina de ejecución propia.
+
+A pesar que dbService tiene la capacidad de conectarse con muchos clientes, esa ventaja se utilizará en el futuro para lo será un sistema distribuido de seguridad.
+
+DbService se basa en la teoría de un manejador de eventos, es así que luego de establecerse la comunicación, queda en espera de un evento que es proporcionado por el cliente, el cual es representado como un paquete de información que contiene el origen y los datos asociados a tal acontecimiento. La información es procesada mediante una máquina de estados la cual determinará la eventual salida del sistema.
+
+Por otra parte, dbService se encarga de leer o escribir la información en una base de datos mediante una biblioteca desarrollada en base a SQLite siendo el único servicio con esta facultad.
+
+Además, el servicio mencionado se encarga de generar y escribir sobre un archivo de texto que contiene el historial de últimos accesos; dicho archivo sirve posteriormente para ser mostrado en el servidor web.
+
+Finalmente, el cliente llamado en adelante logicService, se encarga del envío de eventos al servidor los cuales son enviados luego de ser adquiridos por la interfaz gráfica o el sensor y luego de haber sido procesados.
+
+LogicService se encarga del manejo de la interfaz gráfica y de la comunicación con el sensor lector de huella.
+La figura \ref{fig:sistemagen} ilustra la disposición del sistema general y los sub sistemas conformantes.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=.3]{./Figures/sistemagen.png}
+	\caption{Disposición del sistema general implementado.}
+	\label{fig:sistemagen}
+\end{figure}
 
 %------------------------------------------------------------------------------------
 %------------------------------------------------------------------------------------
-\section{Sistema General}
+\section{Subsistema logicService}
+A continuación se detallan los módulos que forman parte del sub sistema logicService y su funcionamiento dentro del entorno.
+\subsection{Módulo para el manejo de la interfaz gráfica}
+Como fue mencionado, la interfaz para el proyecto se desarrolló en base a la librería gtk+ bajo el entorno glade. 
+
+El módulo que maneja la interfaz se basa en la teoría de threads ya que la librería gtk+ da soporte para esta implementación, es así que cada página que forma parte de la interfaz puede ser manejada como un proceso paralelo e independiente.
+
+La interfaz gráfica implementada consta de cuatro páginas. 
+
+La primera es la página de inicio en la que mediante tres botones se puede acceder a una página y una tarea asociada a cada botón.
+
+Cada una de las ventanas invocadas por los botones son ventanas activas ya que dentro de su respectiva tarea realizan diferentes acciones que corren en segundo plano. Por tal razón fueron diseñadas para que su ejecución sea mutuamente excluyente, es decir, solo la página y por ende la tarea desplegada tiene acceso a los datos y vías de comunicación.
+
+La figura \ref{fig:paginas} muestra la disposición de las páginas en la interfaz y la dependencia entre las mismas.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[height=10cm,width=6cm]{./Figures/paginas.png}
+	\caption{Disposición y dependencia de páginas de la interfaz diseñada.}
+	\label{fig:paginas}
+\end{figure}
+
+La segunda página (Acceso bio) levanta los módulos sensor huella, en adelante llamado (fingerprint service), y el módulo GPIO.En esta se implementa el reconocimiento de la huella digital y para tal propósito se desarrolla una máquina de estados que funciona con la siguiente lógica:
+
+El sistema se comunica con el sensor y  en caso de haber la presencia de un dedo sobre el cristal del mismo, cambia de estado, recoge la imagen y la procesa, busca coincidencia con su base de datos interna  y, si existe, levanta el módulo GPIO para activar una salida digital, además, despliega un mensaje en pantalla. 
+
+En caso de no existir similitud de huellas se envía un mensaje de notificación a pantalla; vuelve al estado inicial luego de remover el dedo del cristal.
+
+La figura \ref{fig:maquinabio} muestra el diagrama para la máquina de estados diseñada.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.3]{./Figures/maquinabio.png}
+	\caption{Máquina de estado para validación de huella dactilar.}
+	\label{fig:maquinabio}
+\end{figure}
+
+Finalmente, en caso de existir una coincidencia con la huella ingresada, el sistema genera un evento enviando un paquete de datos tipo estructura con los campos mostrados en la figura \ref{fig:estructuradata}. 
+
+El envío se realiza a través de la comunicación TCP donde serán recibidos por el servidor y posteriormente procesados.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.1]{./Figures/estructuradata.png}
+	\caption{Estructura de datos enviada desde el cliente TCP al generarse un evento.}
+	\label{fig:estructuradata}
+\end{figure}
+
+Los elementos de la estructura de datos son:
+\begin{itemize}
+\item ID Proceso corresponde al identificador de la página que genera el evento y se representa mediante un número entero.
+\item ID Usuario representa el número de la ubicación dentro de la librería del sensor en la cual se encuentra el modelo con la coincidencia de la huella, se representa también mediante un número entero.
+\item Nombre corresponde al campo donde se asigna al usuario un nombre, este campo se representa mediante un arreglo de caracteres.
+\item Contraseña es el campo donde se guarda la contraseña numérica del usuario y es representada mediante un arreglo de números enteros.
+\end{itemize}
+
+
+No todas las páginas llenan todos los campos luego de un evento, únicamente son completados los campos que correspondan a la aplicación que se ejecuta y el respectivo evento, los demás campos no se tocan; el servidor se basa en el ID Proceso para seleccionar que datos que debe analizar y descarta los otros.
+
+La tercera página (Acceso pass) permite la validación de una clave numérica de cuatro dígitos.
+
+El usuario introduce la clave mediante el teclado virtual desplegado en la pantalla	la misma es enviada y validad por el servidor.
+
+Finalmente la cuarta página corresponde a la interfaz para la configuración del sistema la cual se encuentra diseñada pero no esta integrada operativamente por lo que su vinculación se realizará en el futuro, esta página permitirá modificar los diferentes campos de los usuarios registrados, generar nuevos o borrar los existentes y su uso será restringido.
+
+\subsection{Módulo para el manejo del sensor lector de huella}
+
+Este módulo es el encargado de interactuar con el sensor enviándole las tramas necesarias para la adquisición, procesamiento, almacenamiento y borrado de las huellas así como las posibles configuraciones del mismo.
+
+Para tal propósito se desarrolló una biblioteca con diversas funciones entre las que se destacan:
+
+\begin{itemize}
+
+\item (void)AdafruitFingerprintpacket(int tipo,int tamaño,int* data): Encargada de formar la trama según el modelo visto en la figura 3.6.
+
+Esta función es la base para interactuar con el sensor y esta contenida dentro del resto de funciones.
+
+Parámetros: 
+	\begin{itemize}
+	\item tipo, corresponde a la identificación como comando o respuesta.
+	\item tamaño, indica el tamaño del mensaje entre la instrucción, los datos y el checksum sin 		considerar el encabezado.
+	\item data, es un puntero a un arreglo que contiene la instrucción a realizarse y los datos 		correspondientes a la misma.
+	\end{itemize}  
+
+\item (int)GetStructuredPacket(struct* packet, int timeout ): Función encargada de recibir la trama de respuesta desde el sensor. Recibe cada uno de los elementos de la trama y los almacena en una estructura donde pueden ser consultados posteriormente.
+
+Parámetros de entrada: 
+\begin{itemize}
+\item packet, puntero a estructura donde se almacena la respuesta recibida.
+\item timeout, valor que establece el tiempo máximo de espera antes de generar un error de comunicación.
+
+\end{itemize}
+
+Parámetro de salida: Luego de comparar el valor del campo tamaño de los datos recibidos con el número de elementos contenidos en la estructura, devuelve un valor 0x00 en caso de coincidir o caso contrario un valor 0xfe.
+
+\item (void)WriteStructuredPacket(struct* packet): Encargada de enviar a través del puerto serial la trama formada por la instrucción AdafruitFingerprintpacket, también es la responsable de generar el checksum y enviarlo al final del paquete.
+
+Parámetros: packet, puntero a la estructura que contiene la trama de envío.
+
+\item (int)Image2Tz(int slot): Se encarga de digitalizar la imagen contenida en uno de los dos buffers de archivo.
+
+Parámetro de entrada: slot, indica el buffer de archivo en el cual esta cargada la imagen a digitalizar.
+
+Parámetro de salida: valor de tipo entero con el código que indica un proceso exitoso o algún posible error.
+
+\item (int)CreateModel(void): Permite crear el modelo de huella en base a las características encontradas en dos imágenes cargadas con anterioridad en los buffers de archivo; en caso que las imágenes sean muy diferentes notifica el error.
+
+Parámetro de salida: valor de tipo entero con el código que indica un proceso exitoso o algún posible error.
+
+\item (int)StoreModel(int location): Una vez creado el modelo de la huella, el modelo es guardado en los dos buffers de archivo. La función se encarga de guardar el modelo en el buffer de imagen alojada en la memoria flash.
+
+Parámetro de entrada: location, indica el lugar dentro de la librería en el cual se guardará el modelo, son posibles de 1 a 162.
+
+Parámetro de salida: valor de tipo entero con el código que indica un proceso exitoso o algún posible error.
+
+\item (int)DeleteModel(int location): Permite borrar un modelo contenido en la librería del sensor.
+
+Parámetro de entrada: location, indica el lugar dentro de la librería en el cual está el modelo a ser borrado.
+
+Parámetro de salida: valor de tipo entero con el código que indica un proceso exitoso o algún posible error.
+
+\item (int)EmptyDatabase(void): Permite borrar toda la librería del sensor.
+
+Parámetro de salida: valor de tipo entero con el código que indica un proceso exitoso o algún posible error.
+
+\item (int)GetImage(void): Permite obtener la imagen de la huella del dedo ubicado sobre el cristal del sensor. 
+
+Parámetro de salida: valor de tipo entero con el código que indica un proceso exitoso o algún posible error.
+
+\item (int)FingerFastSearch(void): Compara una imagen cargada en uno de los buffers de archivo, con los modelos de la librería del sensor y notifica en caso de haber coincidencia. 
+
+Parámetro de salida: valor de tipo entero con el código que indica un proceso exitoso o algún posible error.
+
+\end{itemize}
+
+La figura \ref{fig:maquinaenrolar} muestra la máquina de estados desarrollada para la implementación del enrolamiento de huellas mediante el uso de la librería adafruit fingerprint.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[height=11cm,width=10cm]{./Figures/maquinaenrolar.png}
+	\caption{Máquina de estados para el enrolamiento de huellas.}
+	\label{fig:maquinaenrolar}
+\end{figure}
+%------------------------------------------------------------------------------------
+\subsection{Módulo GPIO}
+Para la implementación de la salida digital, así como el manejo de la comunicación serial por parte de la plataforma de desarrollo, se utiliza la librería WiringPi la cual esta escrita en lenguaje C y es compatible con los modelos de placas basadas en los procesadores  BCM2835, BCM2836 y BCM2837.
+
+Esta biblioteca esta diseñada especialmente para trabajar en Raspberry Pi que ejecuta Raspbian, el uso para otras condiciones no esta soportado.
+
+Las funciones utilizadas para la comunicación serial son:
+
+\begin{itemize}
+\item int serialOpen (char *device, int baud); abre la comunicación del dispositivo. 
+\item void serialClose (int fd) ; Cierra la comunicación con el dispositivo. 
+\item void serialPutchar (int fd, unsigned char c) ; envía un byte único al dispositivo receptor.
+\item int serialDataAvail (int fd) ; devuelve el número de caracteres disponible para lectura. 
+\item int serialGetchar (int fd) ; lee un carácter disponible en el dispositivo. 
+\item void serialFlush (int fd) ; descarta los datos recibidos en espera.
+\end{itemize}
+
+Las funciones utilizadas para configurar la salida digital son:
+
+\begin{itemize}
+\item void pinMode(int pin, int mode): Sirve para especificar el modo de operación del pin seleccionado.
+\item void digitalWrite(int pin, int value): Se utiliza para poner un pin, que previamente ha sido configurado como salida un 1 lógico o 0 lógico.
+\end{itemize}
+
+La descripción en detalle de la biblioteca se encuentra en \citep{WIRINGPI}.
+
+
+La tabla \ref{tab:pines} muestra la relación entre las denominaciones de los pines para el procesador, la placa y la librería utilizados.
+
+\begin{table*}[h]
+	\centering
+	\caption[Denominación de pines]{Relación de denominaciones pin, procesador y librería}
+	\begin{tabular}{c c c c}    
+		\toprule
+		\textbf{No Pin}  & \textbf{GPIO}  & \textbf{WiringPi} & \textbf{Función}\\
+		\midrule
+		8		& 14		& 15	& TX\\		
+		10		& 15		& 16	& RX\\
+		16		& 23		& 4		& Salida digital\\					
+		\bottomrule
+		\hline
+	\end{tabular}
+	\label{tab:pines}
+\end{table*}
+
+La figura \ref{fig:gpio3}  muestra la distribución de pines de la placa de desarrollo.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale =.3]{./Figures/gpio3.png}
+	\caption{Distribución de pines Raspberry Pi 3.}
+	\label{fig:gpio3}
+\end{figure}
+
 %------------------------------------------------------------------------------------
 %------------------------------------------------------------------------------------
-\section{Subsistema GUI (logic Service)}
 %------------------------------------------------------------------------------------
-%------------------------------------------------------------------------------------
-\section{Subsistema para control del sensor de huella}
-%------------------------------------------------------------------------------------
-%------------------------------------------------------------------------------------
-\section{Subsistema data-web}
+\section{Subsistema dbService}
+
+A continuación se detallan los módulos que forman parte del sub sistema dbService y su funcionamiento dentro del entorno.
+\subsection{Módulo para el manejo de la base de datos}
+
+Para acceder y recibir datos desde una base SQLite no es necesario trabajar con un estructura cliente – servidor ya que este tipo de bases se operan directamente desde el disco.
+
+En consecuencia se trabaja directamente mediante el uso de comandos los cuales se los puede dividir en dos grandes grupos: 
+
+Los comandos META utilizados para definir el formato de salida para las tablas, examinar los datos y para operaciones administrativas.
+
+Por otro lado están los comandos ESTÁNDAR, utilizados para operar sobre la base de datos. Dentro de esta rama se puede definir la siguiente clasificación:
+
+\begin{itemize}
+\item Comandos para definición de datos: Brindan la estructura y métodos de almacenamiento, ejemplo: CREATE, ALTER, DROP. 
+\item Comandos para manipulación de campos: Permiten manejar los datos, ejemplo: INSERT, UPDATE, DELETE.
+\item Comandos para consulta: Utilizados para la recuperar los datos necesarios de la base, ejemplo: SELECT.
+\end{itemize}
+
+Existen gran variedad de instrucciones a parte de las mencionadas, sin embargo, no son tratados en su totalidad ya que superan los alcances del proyecto y únicamente se mencionan los relevantes para este trabajo.
+
+
+\textsl{Tipos de datos soportados:}
+
+Los datos almacenados en la base pueden ser implementados con alguno de los siguientes tipos:
+
+\begin{itemize}
+\item NULL: Valor nulo.
+\item INTEGER: Entero con signo entre 1 a 8 bytes.
+\item REAL: Número de punto flotante almacenado en 8 bytes.
+\item TEXT: Cadena de texto almacenada con las codificaciones UTF-8, UTF-16BE ó UTF-16-LE.
+\item BLOB: Datos en formato binario.
+\end{itemize}
+
+\textsl{Formato de tabla:}
+
+La tabla \ref{tab:tabla} ilustra los campos contenidos en la base de datos implementada.
+
+\begin{table*}[h]
+	\centering
+	\caption[Tabla implementada]{Campos constitutivos de la base de datos}
+	\begin{tabular}{c c c c}    
+		\toprule
+		\textbf{ID}  & \textbf{NOMBRE}  & \textbf{PASSWORD} & \textbf{IDSENSOR}\\
+		\midrule
+		1		& Principal		& 1234	& 1\\		
+		2		& User1			& 1111	& 2\\
+		3		& User2			& 2222	& 3\\					
+		\bottomrule
+		\hline
+	\end{tabular}
+	\label{tab:tabla}
+\end{table*}
+
+\textsl{Diseño de la biblioteca para el manejo de la base de datos.}
+
+Existe una extensa librería en lenguaje C que permite trabajar con SQLite, la biblioteca desarrollada para este proyecto esta basada en las siguientes funciones pertenecientes a la librería estándar:
+
+\begin{itemize}
+\item sqlite3 open(const char *filename, sqlite3 **ppDb): Función que permite abrir un fichero de base de datos, especificando el nombre para el mismo.
+Filename define el nombre de la base de datos
+ppDB almacena el manipulador de la conexión con la base creada.
+\item sqlite3 close(sqlite3 *): cierra la conexión con la base, liberando todos los recursos asociados.
+Sqlite3 almacena el manipulador de la conexión a ser cerrada.
+\item sqlite3 exec(sqlite3*, const char *sql, int (*callback)(void*, int, char**,char**), void*, char** ermsg): Permite ejecutar múltiples sentencias SQL mediante un solo llamado.
+Sqlite3 almacena el manipulador de la conexión hacia la base de datos.
+Sql contiene la función SQL a ser ejecutada.
+Callback es la función de retro llamada que puede ser invocada tras la ejecución de la sentencia SQL.
+Void es el primer argumento enviado a la función de retro llamada.
+Ermsg corresponde al un mensaje de error.
+\end{itemize}
+
+\textsl{Funciones implementadas.}
+
+En base a las funciones descritas anteriormente, se desarrollan las siguientes funciones que permiten las operaciones básicas con la base de datos.
+
+\begin{itemize}
+\item create db: Permite crear una nueva base de datos o abrir una conexión con una existente.
+
+Parámetros de entrada: data, puntero al identificador o manipulador de la base; name, nombre de la base a ser manipulada o creada. 
+
+Parámetro de salida: Ninguno.
+
+\item create table: Permite crear una tabla con diferentes campos sobre una base de datos abierta.
+
+Parámetros de entrada: 	data, puntero al identificador o manipulador de la base; sql dat, puntero a la función SQL a ejecutarse; name, nombre de la base sobre la que se creará la tabla.
+
+Parámetro de salida: Ninguno.
+
+\item insert user, print user y delete user realizan las tareas de agregar un nuevo campo o usuario, obtener datos o borrarlos respectivamente. Poseen los mismos parámetros de entrada y salida que la función create table.
+
+\end{itemize}
+
+El acceso y manipulación de base de datos se realiza en el servicio dbService el cual se encarga de gestionar los datos de los usuarios dependiendo del evento que se genere.
+
+\subsection{Módulo para el manejo de archivo}
+
+Con el fin de establecer un medio de comunicación entre los servicios dbService y  servicio web, se implementa un pequeño módulo para el manejo de ficheros bajo el lenguaje C.
+
+El estandar de C contiene varias funciones para la edición de archivos a las cuales se puede acceder desde la librería stdio.h.
+
+El sistema crea un archivo tipo texto sobre el cual se escribe la información del usuario que tuvo un reconocimiento previo sea por medio de del sensor biométrico o por clave de seguridad.
+
+Sobre tal fichero se escriben los datos uno a continuación de otro generando de este modo un historial de accesos.
+
+Luego de realizar la escritura correspondiente de los datos, el archivo puede ser recogido por el servicio web para ser mostrado en la pagina.
+
+La manipulación del archivo esta a cargo de dbService quien coordina la lectura desde la base de datos y la escritura sobre el archivo.
+
+\section{Subsistema Servicio Web}
+
+Para lograr que el usuario pueda acceder eventualmente al historial de accesos registrados por el sistema, se implementó un servidor web elemental sobre la placa de desarrollo.
+
+Para conseguir dicho objetivo existen en la actualidad diferentes herramientas combinadas que permiten lograr servidores con gran prestación de servicios. Este proyecto se basa en uno de los paquetes informáticos mas difundidos para tal trabajo, la arquitectura LAMP, acrónimo de Linux, Apache, MySQL y PHP.
+
+Mediante el paquete mencionado se logra ejecutar páginas web HTML dinámicas; se aclara que la herramienta MySQL es reemplazada por SQLite para realizar el manejo de la base de datos.
+
+A continuación se describe las características mas relevantes de cada uno de los paquetes informáticos utilizados.
+
+\begin{itemize}
+
+\item Linux: Sistema operativo embebido distribución Raspbian Lite.
+
+\item Apache: Se trata de el servidor web HTTP más utilizado, de código abierto y multiplataforma.
+
+Permite procesar archivos escritos en diferentes lenguajes de programación como PHP, Python, Java entre otros.
+
+Es altamente personalizable ya que posee una estructura en módulos permitiendo al administrador 	activar o desactivar funcionalidades.
+
+Posee módulos de seguridad actualizados con frecuencia, almacenamiento de cache, reescritura de URL, verificación de contraseña entre los más importantes.
+
+Permite configurar un hosting virtual basado en Ips o en nombres permitiendo alojar varios sitios web en el mismo equipo.
+
+\item SQLite: Sistema de gestión para el manejo de base de datos.
+
+\item PHP (PHP Personal Hypertex Prepocessor): Lenguaje de código abierto para generación de scripts para el desarrollo de paginas web el cual pude ser embebido en páginas HTML.
+
+Con sintaxis recurrente a lenguaje C, permite una sencilla su implementación. 
+
+Incluye una interfaz de línea de comandos que puede ser usada en aplicaciones gráficas independientes.
+
+Permite la conexión a diferentes tipos de servidores de bases de datos tanto SQL como NoSQL.
+
+El código escrito en PHP es invisible al navegador web y al cliente ya que es el servidor el que se encarga de ejecutarlo y enviar el resultado.
+
+\end{itemize}
+
+Basado en la arquitectura Linux, Apache, SQLite, PHP (LASP), el proyecto implementa un script para la lectura del archivo que contiene el historial de accesos y lo muestra mediante el navegador mediante una conexión local.
+
+La figura \ref{fig:servidor} muestra el esquema final del servidor web implementado.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale =.3]{./Figures/servidor.png}
+	\caption{Esquema de servidor web implementado.}
+	\label{fig:servidor}
+\end{figure}
+
+La página desarrollada en muy sencilla pero gracias a la estructura sobre la cual esta montada brinda grandes posibilidades de ampliación, dejando para trabajo futuro la posible implementación de formularios o gráficas que pontecialicen al sistema.
+
+
+
+
