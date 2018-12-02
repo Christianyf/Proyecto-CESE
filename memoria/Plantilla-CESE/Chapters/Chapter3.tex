@@ -122,7 +122,7 @@ La figura \ref{fig:rasp} muestra la distribución de los diferentes módulos con
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=.8]{./Figures/rasp.pdf}
+	\includegraphics[scale=.7]{./Figures/rasp.pdf}
 	\caption{Raspberry Pi 3 B+ módulos constitutivos.}
 	\label{fig:rasp}
 \end{figure}
@@ -144,9 +144,9 @@ La figura \ref{fig:raspbian} muestra la distribución Raspbian Lite en su versi�
 \end{figure}
 
  \subsection{Pantalla táctil}
-Pantalla de 7 pulgadas diseñada especialmente para la placa de desarrollo seleccionada y gran variedad de placas de la misma familia. 
+Pantalla de 7 pulgadas modelo element 14, diseñada especialmente para la placa de desarrollo seleccionada y gran variedad de placas de la misma familia. 
 Este accesorio ha sido integrado en gran cantidad de proyectos tanto de información y entretenimiento como de tecnología. 
-Entre sus principales características se citan:
+Entre sus principales características están:
 
 \begin{itemize}
 \item Dimensiones : 194mm x 110mm x 20mm 
@@ -156,11 +156,11 @@ Entre sus principales características se citan:
 
 Para su conexión con la Raspberry Pi utiliza una placa para adaptar señales de alimentación y señales lógicas, además, la comunicación se realiza mediante el puerto y protocolo  DSI (Display Serial Interface).
 
-Gracias a la la implementación del sistema operativo, la pantalla funciona como un dispositivo “plug and play” por lo que no fue necesario el desarrollo de bibliotecas adicionales.
+Gracias a la implementación del sistema operativo, la pantalla funciona como un dispositivo “plug and play” por lo que no fue necesario el desarrollo de bibliotecas adicionales.
 
-La figura \ref{fig:pantalla} muestra los elementos constitutivos y necesarios para la conexión de la pantalla con la placa de desarrollo.
+La figura \ref{fig:pantalla} muestra los elementos constitutivos y necesarios para la conexión de la pantalla con la placa de desarrollo. Tomado de \citep{ELEPI}.
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[scale=.5]{./Figures/pantalla.png}
 	\caption{Pantalla touch 7 pulgadas element 14 y accesorios para conexión.}
@@ -169,6 +169,7 @@ La figura \ref{fig:pantalla} muestra los elementos constitutivos y necesarios pa
 
 %------------------------------------------------------------------------------------
 \section{Desarrollo de interfaz gráfica}
+Para la implementación de la interfaz se consideran herramientas de código abierto, con soporte para implementación en Linux, basadas en lenguaje C, que brinden soporte y mantenimiento continuo y con un entorno amigable. Bajo estas premisas se decide la utilización del entorno Glade basado en GTK, cuyas descripciones se detallan a continuación. 
  \subsection{GTK+}
 GTK+ o GIMP Toolkit es una herramienta utilizada para crear interfaces gráficas de usuario, es una herramienta multiplataforma escrita en lenguaje C con soporte para el uso de otros lenguajes como Perl y Python.
 
@@ -182,13 +183,15 @@ La herramienta se basa en una serie de librerías entre las cuales destacan:
 \item GTK: Proporciona controles de interfaz de usuario y señales para los controles de usuario.
 \end{itemize}
 
+Para mayor descripción referirse a \citep{GTK}.
+
 \subsection{Glade}
 Glade es un entorno gráfico para el desarrollo de interfaces gráficas basadas en GTK+ el cual genera un archivo en formato XML  y gracias a esta propiedad permite el desarrollo con soporte para diferentes lenguajes de programación.
 La figura \ref{fig:glade} muestra el entorno de desarrollo de Glade.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=.3]{./Figures/glade.png}
+	\includegraphics[scale=.4]{./Figures/glade.pdf}
 	\caption{Entorno de desarrollo Glade.}
 	\label{fig:glade}
 \end{figure}
@@ -199,29 +202,33 @@ Finalmente la columna de la derecha muestra el diagrama de árbol de la interfaz
 
 Para el desarrollo de la presente memoria se efectuó el siguiente método de trabajo para cada una de las páginas desarrolladas. 
 
-En primer lugar se selecciona una ventana principal, sobre esta se distribuyen el resto de componentes; para lograr una distribución mas uniforme y estructurada se hace uso de contenedores, una ves con los elementos en su posición final, se procede a establecer identificadores adecuados para cada uno así como la asignación de señales a eventos. 
+En primer lugar se selecciona una ventana principal, sobre ésta se distribuyen el resto de componentes; para lograr una distribución más uniforme y estructurada se hace uso de contenedores, una vez que los elementos se encuentran en su posición, se procede a establecer identificadores adecuados para cada uno así como la asignación de señales a eventos. 
 
-La asignación de señales e identificadores es muy importante ya que estos se utilizan luego en el programa principal.
+La asignación de señales e identificadores es muy importante ya que éstos se utilizan luego en el programa principal.
 Finalmente todo el diseño se guarda como un archivo con extensión (.glade) el cual se invocará desde la aplicación final.
 
 %------------------------------------------------------------------------------------
 %------------------------------------------------------------------------------------
 \section{Módulo sensor para adquisición de huellas}
+El sensor seleccionado para el proyecto pertenece a la clasificación de los lectores ópticos reflexivos. 
+
+A continuación se muestran las principales características y el modo de operación del dispositivo.
+
 \subsection{Lectores ópticos reflexivos}
-El funcionamiento del sensor  de huella comienza luego de  colocar el dedo sobre la superficie de cristal del mismo la cual esta iluminada mediante un diodo led. La luz incide sobre el dedo causando el efecto de reflexión, este efecto se manifiesta con la aparición de zonas mas obscuras en las crestas de la huella y zonas mas claras en los valles.
+El funcionamiento del sensor  de huella comienza luego de  colocar el dedo sobre la superficie de cristal del mismo la cual esta iluminada mediante un diodo led. La luz incide sobre el dedo causando el efecto de reflexión, este efecto se manifiesta con la aparición de zonas más obscuras en las crestas de la huella y zonas más claras en los valles.
 
 La imagen recogida es procesada en busca de características relevantes (Minucias), luego de esto, se genera una plantilla digitalizada la cual se guarda para ser consultada posteriormente.
 La figura \ref{fig:huella} ilustra brevemente el proceso realizado por el sensor.
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
-	\includegraphics[scale=.2]{./Figures/huella.png}
+	\includegraphics[scale=.15]{./Figures/huella.png}
 	\caption{Procesamiento de huella dactilar.}
 	\label{fig:huella}
 \end{figure}
 
-\subsection{Módulo lector de huella Adafruit ZFM-20}
-Módulo basado en el chip AS608 para el procesamiento digital el cual permite la representación, cálculo, extracción de características y  cotejamiento de huellas.
+\subsection{Módulo lector de huella seleccionado}
+El módulo Adafruit ZFM-20 está basado en el chip AS608 para el procesamiento digital el cual permite la representación, cálculo, extracción de características y  cotejamiento de huellas.
 Entre los principales atributos se destacan:
 
 \begin{itemize}
@@ -238,7 +245,7 @@ Entre los principales atributos se destacan:
 
 Otras características importantes de mencionar son la presencia de memoria RAM de 72Kb, un buffer para almacenamiento de imágenes y dos buffers de archivo para procesamiento los cuales pueden ser accedidos aleatoriamente mediante las instrucciones del sistema. 
 
-El módulo posee además una base de datos conocida también como librería en la cual se realiza el almacenamiento de patrones de huellas en un espacio de memoria flash.
+El módulo posee además una base de datos conocida también como biblioteca en la cual se realiza el almacenamiento de patrones de huellas en un espacio de memoria flash.
 
 Para la comunicación del sistema con el sensor se utiliza el interfaz UART y para tal propósito el dispositivo lector de huellas establece su propio protocolo el cual consta de comandos y datos enviados en paquetes con los elementos mostrados en la tabla \ref{tab:paquetes}.
 
@@ -273,7 +280,7 @@ Existen diversos comandos que permiten trabajar con todas las funcionalidades de
 		Sistema	 	& 0x12 	& Cambiar contraseña.\\		
 		Sistema	 	& 0x15 	& Cambio de dirección.\\
 		Comunicación & 0x0e & Cambio de parámetros.\\	
-		Imagen	 	& 0x01 	& Cargar imagen.\\
+		Imagen	 	& 0x01 	& Escanear imagen.\\
 		Imagen	 	& 0x02 	& Extracción de característica.\\
 		Imagen	 	& 0x03 	& Montaje de imágenes.\\
 		Proceso	 	& 0x04 	& Buscar modelo.\\
@@ -304,39 +311,39 @@ En el ejemplo expuesto, la confirmación por parte del sensor podría tener tres
 \item Código de confirmación = 0x01 correspondiente a una recepción de datos fallida. 
 \item Código de confirmación = 0x02 correspondiente a una adquisición vacía, es decir, no hay un dedo sobre el sensor.
 \end{itemize}
-
+Para mayor detalle sobre el funcionamiento y características del sensor, referirse a \citep{FINGER}.
 %------------------------------------------------------------------------------------
 %------------------------------------------------------------------------------------
 \section{Gestión de base de datos (SQLite)}
-En primera instancia no se planteó la posibilidad de trabajar con herramientas para la gestión de datos de usuarios, sin embargo, pensando en un desarrollo futuro, la portabilidad, la seguridad y un mejor desarrollo se implementa la herramienta SQLite.
+En primera instancia no se planteó la posibilidad de trabajar con herramientas para la gestión de datos de usuarios, sin embargo, pensando en un desarrollo futuro, la portabilidad, la seguridad y un mejor desarrollo se implementó la base de datos mediante SQLite.
 
-SQLite es una biblioteca escrita en lenguaje C que permite implementar un motor de base de datos transaccional de SQL(Structured Query Language) auto contenido y sin servidor. Esta librería de código abierto a diferencia de otras bases de datos no tiene un proceso de servidor separado, esto le permite leer y escribir directamente en archivos de disco ordinarios, con esto se logra tener una base de datos SQL  completa con múltiples tablas, índices, activadores y listas en un solo archivo de disco.
+SQLite es una biblioteca escrita en lenguaje C que permite implementar un motor de base de datos transaccional de SQL(Structured Query Language) auto contenido y sin servidor. Esta biblioteca de código abierto a diferencia de otras bases de datos no tiene un proceso de servidor separado, esto le permite leer y escribir directamente en archivos ordinarios, de esta manera se logra tener una base de datos SQL  completa con múltiples tablas, índices, activadores y listas en un solo archivo.
 
 El formato de archivo de la base de datos obtenido con SQLite es multiplataforma lo que le permite trabajar libremente con bases de datos en sistemas de 32 y 64 bits o entre arquitecturas big-endian y little-endian. 
 
-La versión utilizada (SQLite3) permite crear bases de  datos de hasta 2 Terabytes y contando con que es una librería que alcanza un promedio en tamaño de alrededor de 275 KiB, se establece que SQLite es ideal para ser implementada en sistemas embebidos.
+La versión utilizada (SQLite3) permite crear bases de  datos de hasta 2 Terabytes y contando con que es una biblioteca que alcanza un promedio en tamaño de alrededor de 275 KiB, se establece que SQLite es ideal para ser implementada en sistemas embebidos. Para mayor detalle referirse a \citep{SQLITE}.
 %------------------------------------------------------------------------------------
 \section{Sistema General}
-Para la implementación del proyecto se seleccionó el modelo cliente-servidor para comunicación TCP entre procesos corriendo sobre el sistema operativo Linux.
+Para la implementación del proyecto se desarrolló una arquitectura cliente-servidor utilizando una comunicación TCP entre procesos corriendo sobre el sistema operativo Linux.
 
-Para tal propósito, el servidor llamado en adelante dbService, inicia el proceso de comunicación y queda a la espera de posibles clientes, puede soportar comunicación hasta con 100 clientes a los cuales asocia un canal propio y una rutina de ejecución propia.
+Para tal propósito, el servidor llamado en adelante \textit{dbService}, inicia el proceso de comunicación y queda a la espera de posibles clientes, puede soportar comunicación hasta con 100 clientes a los cuales asocia un canal propio y una rutina de ejecución propia.
 
-A pesar que dbService tiene la capacidad de conectarse con muchos clientes, esa ventaja se utilizará en el futuro para lo será un sistema distribuido de seguridad.
+A pesar que \textit{dbService} tiene la capacidad de conectarse con muchos clientes, esa ventaja se utilizará en el futuro para lo que será un sistema distribuido.
 
-DbService se basa en la teoría de un manejador de eventos, es así que luego de establecerse la comunicación, queda en espera de un evento que es proporcionado por el cliente, el cual es representado como un paquete de información que contiene el origen y los datos asociados a tal acontecimiento. La información es procesada mediante una máquina de estados la cual determinará la eventual salida del sistema.
+\textit{DbService} se basa en la teoría de un manejador de eventos, es así que luego de establecerse la comunicación, queda en espera de un evento que es proporcionado por el cliente, el cual es representado como un paquete de información que contiene el origen y los datos asociados a tal acontecimiento. La información es procesada mediante una máquina de estados la cual determinará la eventual salida del sistema.
 
-Por otra parte, dbService se encarga de leer o escribir la información en una base de datos mediante una biblioteca desarrollada en base a SQLite siendo el único servicio con esta facultad.
+Por otra parte, \textit{dbService} se encarga de leer o escribir la información en una base de datos mediante una biblioteca desarrollada en base a SQLite siendo el único servicio con esta facultad.
 
 Además, el servicio mencionado se encarga de generar y escribir sobre un archivo de texto que contiene el historial de últimos accesos; dicho archivo sirve posteriormente para ser mostrado en el servidor web.
 
-Finalmente, el cliente llamado en adelante logicService, se encarga del envío de eventos al servidor los cuales son enviados luego de ser adquiridos por la interfaz gráfica o el sensor y luego de haber sido procesados.
+Finalmente, el cliente llamado en adelante \textit{logicService}, se encarga del envío de eventos al servidor los cuales son enviados luego de ser adquiridos por la interfaz gráfica o el sensor y luego de haber sido procesados.
 
-LogicService se encarga del manejo de la interfaz gráfica y de la comunicación con el sensor lector de huella.
-La figura \ref{fig:sistemagen} ilustra la disposición del sistema general y los sub sistemas conformantes.
+\textit{LogicService} se encarga del manejo de la interfaz gráfica y de la comunicación con el sensor lector de huella.
+La figura \ref{fig:sistemagen} ilustra la disposición del sistema general y los elementos constitutivos.
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
-	\includegraphics[scale=.3]{./Figures/sistemagen.png}
+	\includegraphics[scale=1]{./Figures/sistemagen.pdf}
 	\caption{Disposición del sistema general implementado.}
 	\label{fig:sistemagen}
 \end{figure}
@@ -344,15 +351,16 @@ La figura \ref{fig:sistemagen} ilustra la disposición del sistema general y los
 %------------------------------------------------------------------------------------
 %------------------------------------------------------------------------------------
 \section{Subsistema logicService}
-A continuación se detallan los módulos que forman parte del sub sistema logicService y su funcionamiento dentro del entorno.
+A continuación se detallan los módulos que forman parte del sub sistema \textit{logicService} y su funcionamiento dentro del entorno.
+
 \subsection{Módulo para el manejo de la interfaz gráfica}
-Como fue mencionado, la interfaz para el proyecto se desarrolló en base a la librería gtk+ bajo el entorno glade. 
+Como fue mencionado, la interfaz para el proyecto se desarrolló en base a la biblioteca gtk+. 
 
-El módulo que maneja la interfaz se basa en la teoría de threads ya que la librería gtk+ da soporte para esta implementación, es así que cada página que forma parte de la interfaz puede ser manejada como un proceso paralelo e independiente.
+El módulo que maneja la interfaz se basa en la teoría de threads ya que la biblioteca gtk+ da soporte para esta implementación, es así que cada pantalla que forma parte de la interfaz puede ser manejada como un hilo de ejecución paralelo e independiente.
 
-La interfaz gráfica implementada consta de cuatro páginas. 
+La interfaz gráfica implementada consta de cuatro pantallas. 
 
-La primera es la página de inicio en la que mediante tres botones se puede acceder a una página y una tarea asociada a cada botón.
+La primera es la pantalla de inicio en la que mediante tres botones se puede acceder a una página y una tarea asociada a cada botón.
 
 Cada una de las ventanas invocadas por los botones son ventanas activas ya que dentro de su respectiva tarea realizan diferentes acciones que corren en segundo plano. Por tal razón fueron diseñadas para que su ejecución sea mutuamente excluyente, es decir, solo la página y por ende la tarea desplegada tiene acceso a los datos y vías de comunicación.
 
@@ -360,14 +368,14 @@ La figura \ref{fig:paginas} muestra la disposición de las páginas en la interf
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[height=10cm,width=6cm]{./Figures/paginas.png}
-	\caption{Disposición y dependencia de páginas de la interfaz diseñada.}
+	\includegraphics[scale=.7]{./Figures/paginas.pdf}
+	\caption{Disposición y dependencia de pantallas de la interfaz diseñada.}
 	\label{fig:paginas}
 \end{figure}
 
-La segunda página (Acceso bio) levanta los módulos sensor huella, en adelante llamado (fingerprint service), y el módulo GPIO.En esta se implementa el reconocimiento de la huella digital y para tal propósito se desarrolla una máquina de estados que funciona con la siguiente lógica:
+La segunda pantalla (\textit{Acceso bio}) accede a los módulos sensor huella, en adelante llamado (\textit{fingerprint service}), y el módulo GPIO. En ésta se implementa el reconocimiento de la huella digital y para tal propósito se desarrolla una máquina de estados que funciona con la siguiente lógica:
 
-El sistema se comunica con el sensor y  en caso de haber la presencia de un dedo sobre el cristal del mismo, cambia de estado, recoge la imagen y la procesa, busca coincidencia con su base de datos interna  y, si existe, levanta el módulo GPIO para activar una salida digital, además, despliega un mensaje en pantalla. 
+El sistema se comunica con el sensor y  en caso de existir la presencia de un dedo sobre el cristal del mismo, cambia de estado, recoge la imagen y la procesa, busca coincidencia con su base de datos interna  y, si existe, levanta el módulo GPIO para activar una salida digital, además, despliega un mensaje en pantalla. 
 
 En caso de no existir similitud de huellas se envía un mensaje de notificación a pantalla; vuelve al estado inicial luego de remover el dedo del cristal.
 
@@ -375,14 +383,14 @@ La figura \ref{fig:maquinabio} muestra el diagrama para la máquina de estados d
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=.3]{./Figures/maquinabio.png}
+	\includegraphics[scale=1]{./Figures/maquinabio.pdf}
 	\caption{Máquina de estado para validación de huella dactilar.}
 	\label{fig:maquinabio}
 \end{figure}
 
-Finalmente, en caso de existir una coincidencia con la huella ingresada, el sistema genera un evento enviando un paquete de datos tipo estructura con los campos mostrados en la figura \ref{fig:estructuradata}. 
+Finalmente, en caso de existir una coincidencia con la huella ingresada, el sistema genera un evento enviando un paquete de datos con los campos mostrados en la figura \ref{fig:estructuradata}. 
 
-El envío se realiza a través de la comunicación TCP donde serán recibidos por el servidor y posteriormente procesados.
+El envío se realiza a través de la comunicación TCP donde serán recibidos por el programa \textit{dbService} y posteriormente procesados.
 
 \begin{figure}[H]
 	\centering
@@ -393,131 +401,82 @@ El envío se realiza a través de la comunicación TCP donde serán recibidos po
 
 Los elementos de la estructura de datos son:
 \begin{itemize}
-\item ID Proceso corresponde al identificador de la página que genera el evento y se representa mediante un número entero.
-\item ID Usuario representa el número de la ubicación dentro de la librería del sensor en la cual se encuentra el modelo con la coincidencia de la huella, se representa también mediante un número entero.
-\item Nombre corresponde al campo donde se asigna al usuario un nombre, este campo se representa mediante un arreglo de caracteres.
-\item Contraseña es el campo donde se guarda la contraseña numérica del usuario y es representada mediante un arreglo de números enteros.
+\item \textit{ID Proceso} corresponde al identificador de la ventana que genera el evento y se representa mediante un número entero.
+\item \textit{ID Usuario} representa el número de la ubicación dentro de la biblioteca del sensor en la cual se encuentra el modelo con la coincidencia de la huella, se representa también mediante un número entero.
+\item \textit{Nombre} corresponde al campo donde se asigna al usuario un nombre, este campo se representa mediante un arreglo de caracteres.
+\item \textit{Contraseña} es el campo donde se guarda la contraseña numérica del usuario y es representada mediante un arreglo de números enteros.
 \end{itemize}
 
 
-No todas las páginas llenan todos los campos luego de un evento, únicamente son completados los campos que correspondan a la aplicación que se ejecuta y el respectivo evento, los demás campos no se tocan; el servidor se basa en el ID Proceso para seleccionar que datos que debe analizar y descarta los otros.
+No todas las ventanas llenan todos los campos luego de un evento, únicamente son completados los campos que correspondan a la aplicación que se ejecuta y el respectivo evento, los demás campos no se tocan; el servidor se basa en el \textit{ID Proceso} para seleccionar qué datos debe analizar y descarta los otros.
 
-La tercera página (Acceso pass) permite la validación de una clave numérica de cuatro dígitos.
+La tercera página (\textit{Acceso pass}) permite la validación de una clave numérica de cuatro dígitos.
 
-El usuario introduce la clave mediante el teclado virtual desplegado en la pantalla	la misma es enviada y validad por el servidor.
+El usuario introduce la clave mediante el teclado virtual desplegado en la pantalla	la cual es enviada y validada por el servidor.
 
 Finalmente la cuarta página corresponde a la interfaz para la configuración del sistema la cual se encuentra diseñada pero no esta integrada operativamente por lo que su vinculación se realizará en el futuro, esta página permitirá modificar los diferentes campos de los usuarios registrados, generar nuevos o borrar los existentes y su uso será restringido.
+
+Es necesario aclarar que el registro de huellas, nombres y contraseñas nuevos únicamente se realiza por medio de software siendo el administrador y creador de la aplicación la única persona con privilegio para hacerlo.   
 
 \subsection{Módulo para el manejo del sensor lector de huella}
 
 Este módulo es el encargado de interactuar con el sensor enviándole las tramas necesarias para la adquisición, procesamiento, almacenamiento y borrado de las huellas así como las posibles configuraciones del mismo.
 
-Para tal propósito se desarrolló una biblioteca con diversas funciones entre las que se destacan:
-
-\begin{itemize}
-
-\item (void)AdafruitFingerprintpacket(int tipo,int tamaño,int* data): Encargada de formar la trama según el modelo visto en la figura 3.6.
-
-Esta función es la base para interactuar con el sensor y esta contenida dentro del resto de funciones.
-
-Parámetros: 
-	\begin{itemize}
-	\item tipo, corresponde a la identificación como comando o respuesta.
-	\item tamaño, indica el tamaño del mensaje entre la instrucción, los datos y el checksum sin 		considerar el encabezado.
-	\item data, es un puntero a un arreglo que contiene la instrucción a realizarse y los datos 		correspondientes a la misma.
-	\end{itemize}  
-
-\item (int)GetStructuredPacket(struct* packet, int timeout ): Función encargada de recibir la trama de respuesta desde el sensor. Recibe cada uno de los elementos de la trama y los almacena en una estructura donde pueden ser consultados posteriormente.
-
-Parámetros de entrada: 
-\begin{itemize}
-\item packet, puntero a estructura donde se almacena la respuesta recibida.
-\item timeout, valor que establece el tiempo máximo de espera antes de generar un error de comunicación.
-
-\end{itemize}
-
-Parámetro de salida: Luego de comparar el valor del campo tamaño de los datos recibidos con el número de elementos contenidos en la estructura, devuelve un valor 0x00 en caso de coincidir o caso contrario un valor 0xfe.
-
-\item (void)WriteStructuredPacket(struct* packet): Encargada de enviar a través del puerto serial la trama formada por la instrucción AdafruitFingerprintpacket, también es la responsable de generar el checksum y enviarlo al final del paquete.
-
-Parámetros: packet, puntero a la estructura que contiene la trama de envío.
-
-\item (int)Image2Tz(int slot): Se encarga de digitalizar la imagen contenida en uno de los dos buffers de archivo.
-
-Parámetro de entrada: slot, indica el buffer de archivo en el cual esta cargada la imagen a digitalizar.
-
-Parámetro de salida: valor de tipo entero con el código que indica un proceso exitoso o algún posible error.
-
-\item (int)CreateModel(void): Permite crear el modelo de huella en base a las características encontradas en dos imágenes cargadas con anterioridad en los buffers de archivo; en caso que las imágenes sean muy diferentes notifica el error.
-
-Parámetro de salida: valor de tipo entero con el código que indica un proceso exitoso o algún posible error.
-
-\item (int)StoreModel(int location): Una vez creado el modelo de la huella, el modelo es guardado en los dos buffers de archivo. La función se encarga de guardar el modelo en el buffer de imagen alojada en la memoria flash.
-
-Parámetro de entrada: location, indica el lugar dentro de la librería en el cual se guardará el modelo, son posibles de 1 a 162.
-
-Parámetro de salida: valor de tipo entero con el código que indica un proceso exitoso o algún posible error.
-
-\item (int)DeleteModel(int location): Permite borrar un modelo contenido en la librería del sensor.
-
-Parámetro de entrada: location, indica el lugar dentro de la librería en el cual está el modelo a ser borrado.
-
-Parámetro de salida: valor de tipo entero con el código que indica un proceso exitoso o algún posible error.
-
-\item (int)EmptyDatabase(void): Permite borrar toda la librería del sensor.
-
-Parámetro de salida: valor de tipo entero con el código que indica un proceso exitoso o algún posible error.
-
-\item (int)GetImage(void): Permite obtener la imagen de la huella del dedo ubicado sobre el cristal del sensor. 
-
-Parámetro de salida: valor de tipo entero con el código que indica un proceso exitoso o algún posible error.
-
-\item (int)FingerFastSearch(void): Compara una imagen cargada en uno de los buffers de archivo, con los modelos de la librería del sensor y notifica en caso de haber coincidencia. 
-
-Parámetro de salida: valor de tipo entero con el código que indica un proceso exitoso o algún posible error.
-
-\end{itemize}
-
-La figura \ref{fig:maquinaenrolar} muestra la máquina de estados desarrollada para la implementación del enrolamiento de huellas mediante el uso de la librería adafruit fingerprint.
+La figura \ref{fig:finger} muestra la secuencia  realizada para el uso de la biblioteca que maneja el sensor. Se puede apreciar también la relación entre ésta y los servicios de interfaz gráfica y GPIO.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[height=11cm,width=10cm]{./Figures/maquinaenrolar.png}
+	\includegraphics[scale=.9]{./Figures/finger.pdf}
+	\caption{Secuencia para el uso de la biblioteca fingerprint.h.}
+	\label{fig:finger}
+\end{figure}
+
+Todas las operaciones que el sistema realiza sobre el sensor como, la búsqueda, nuevo registro o borrado de una huella, se implementan mediante una máquina de estados independiente.
+Como ejemplo se describe a continuación la máquina de estados que permite enrolar la huella de un nuevo usuario.
+
+En el estado inicial \textit{espera}, el sistema esta en espera que el usuario coloque su dedo sobre el sensor, en caso de detectar la huella, toma la imagen, la almacena en el primer buffer de archivo y cambia al estado \textit{limbo}. En caso de no poder tomar la imagen de la huella pasa al estado de \textit{salida}.
+
+En el estado \textit{limbo}, solicita al usuario remover el dedo del sensor; permanece en este estado mientras no se remueva el dedo, caso contrario cambia al estado \textit{toma}.
+
+En el estado \textit{toma}, solicita al usuario colocar el mismo dedo sobre el sensor para realizar una segunda toma de la imagen de la huella. Si logra  tomar la imagen, la almacena en el segundo buffer de archivo. 
+
+Con las imágenes tomadas saca el modelo de la huella y posteriormente lo guarda en su biblioteca cambiando al estado \textit{salida} luego del proceso.
+
+En caso de no poder tomar la imagen o que las imágenes en los buffers no coincidan, envía un mensaje de error y pasa al estado \textit{salida}.
+
+En el estado \textit{salida} el sistema recupera sus condiciones iniciales y regresa el estado \textit{espera} cuando no detecta la imagen del dedo.
+
+La figura \ref{fig:maquinaenrolar} muestra la máquina de estados desarrollada para la implementación del enrolamiento de huellas mediante el uso de la librería \textit{adafruit fingerprint}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=1]{./Figures/maquinaenrolar.pdf}
 	\caption{Máquina de estados para el enrolamiento de huellas.}
 	\label{fig:maquinaenrolar}
 \end{figure}
 %------------------------------------------------------------------------------------
 \subsection{Módulo GPIO}
-Para la implementación de la salida digital, así como el manejo de la comunicación serial por parte de la plataforma de desarrollo, se utiliza la librería WiringPi la cual esta escrita en lenguaje C y es compatible con los modelos de placas basadas en los procesadores  BCM2835, BCM2836 y BCM2837.
+Para la implementación de la salida digital, así como el manejo de la comunicación serial por parte de la plataforma de desarrollo, se utiliza la biblioteca \textit{WiringPi} la cual esta escrita en lenguaje C y es compatible con los modelos de placas basadas en los procesadores  BCM2835, BCM2836 y BCM2837.
 
 Esta biblioteca esta diseñada especialmente para trabajar en Raspberry Pi que ejecuta Raspbian, el uso para otras condiciones no esta soportado.
 
-Las funciones utilizadas para la comunicación serial son:
+En la figura \ref{fig:clasesgpio} se observa el diagrama de clases definido para el módulo GPIO, en donde se encuentran las clases que representan los periféricos para el manejo de la salida digital y la comunicación serial.
 
-\begin{itemize}
-\item int serialOpen (char *device, int baud); abre la comunicación del dispositivo. 
-\item void serialClose (int fd) ; Cierra la comunicación con el dispositivo. 
-\item void serialPutchar (int fd, unsigned char c) ; envía un byte único al dispositivo receptor.
-\item int serialDataAvail (int fd) ; devuelve el número de caracteres disponible para lectura. 
-\item int serialGetchar (int fd) ; lee un carácter disponible en el dispositivo. 
-\item void serialFlush (int fd) ; descarta los datos recibidos en espera.
-\end{itemize}
-
-Las funciones utilizadas para configurar la salida digital son:
-
-\begin{itemize}
-\item void pinMode(int pin, int mode): Sirve para especificar el modo de operación del pin seleccionado.
-\item void digitalWrite(int pin, int value): Se utiliza para poner un pin, que previamente ha sido configurado como salida un 1 lógico o 0 lógico.
-\end{itemize}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=1]{./Figures/clasesgpio.pdf}
+	\caption{Diagrama de clases para el manejo del módulo GPIO.}
+	\label{fig:clasesgpio}
+\end{figure}
 
 La descripción en detalle de la biblioteca se encuentra en \citep{WIRINGPI}.
 
 
-La tabla \ref{tab:pines} muestra la relación entre las denominaciones de los pines para el procesador, la placa y la librería utilizados.
+La tabla \ref{tab:pines} muestra la relación entre las denominaciones de los pines para el procesador, la placa y la biblioteca utilizados.
 
 \begin{table*}[h]
 	\centering
-	\caption[Denominación de pines]{Relación de denominaciones pin, procesador y librería}
+	\caption[Denominación de pines]{Relación de denominaciones pin, procesador y biblioteca}
 	\begin{tabular}{c c c c}    
 		\toprule
 		\textbf{No Pin}  & \textbf{GPIO}  & \textbf{WiringPi} & \textbf{Función}\\
@@ -545,16 +504,16 @@ La figura \ref{fig:gpio3}  muestra la distribución de pines de la placa de desa
 %------------------------------------------------------------------------------------
 \section{Subsistema dbService}
 
-A continuación se detallan los módulos que forman parte del sub sistema dbService y su funcionamiento dentro del entorno.
+A continuación se detallan los módulos que forman parte del sub sistema \textit{dbService} y su funcionamiento dentro del entorno.
 \subsection{Módulo para el manejo de la base de datos}
 
-Para acceder y recibir datos desde una base SQLite no es necesario trabajar con un estructura cliente – servidor ya que este tipo de bases se operan directamente desde el disco.
+Para acceder y recibir datos desde una base SQLite no es necesario trabajar con un estructura cliente – servidor ya que este tipo de bases se operan directamente con un archivo.
 
 En consecuencia se trabaja directamente mediante el uso de comandos los cuales se los puede dividir en dos grandes grupos: 
 
 Los comandos META utilizados para definir el formato de salida para las tablas, examinar los datos y para operaciones administrativas.
 
-Por otro lado están los comandos ESTÁNDAR, utilizados para operar sobre la base de datos. Dentro de esta rama se puede definir la siguiente clasificación:
+Por otro lado están los comandos ESTÁNDAR, lenguaje SQL utilizado para operar sobre la base de datos. Dentro de esta rama se puede definir la siguiente clasificación:
 
 \begin{itemize}
 \item Comandos para definición de datos: Brindan la estructura y métodos de almacenamiento, ejemplo: CREATE, ALTER, DROP. 
@@ -562,7 +521,7 @@ Por otro lado están los comandos ESTÁNDAR, utilizados para operar sobre la bas
 \item Comandos para consulta: Utilizados para la recuperar los datos necesarios de la base, ejemplo: SELECT.
 \end{itemize}
 
-Existen gran variedad de instrucciones a parte de las mencionadas, sin embargo, no son tratados en su totalidad ya que superan los alcances del proyecto y únicamente se mencionan los relevantes para este trabajo.
+Existen gran variedad de instrucciones aparte de las mencionadas, sin embargo, no son tratados en su totalidad ya que superan los alcances del proyecto y únicamente se mencionan los relevantes para este trabajo.
 
 
 \textsl{Tipos de datos soportados:}
@@ -586,7 +545,7 @@ La tabla \ref{tab:tabla} ilustra los campos contenidos en la base de datos imple
 	\caption[Tabla implementada]{Campos constitutivos de la base de datos}
 	\begin{tabular}{c c c c}    
 		\toprule
-		\textbf{ID}  & \textbf{NOMBRE}  & \textbf{PASSWORD} & \textbf{IDSENSOR}\\
+		\textbf{ID(Integer)}  & \textbf{NOMBRE(Text)}  & \textbf{PASSWORD(Integer)} & \textbf{IDUSUARIO(Integer)}\\
 		\midrule
 		1		& Principal		& 1234	& 1\\		
 		2		& User1			& 1111	& 2\\
@@ -599,58 +558,42 @@ La tabla \ref{tab:tabla} ilustra los campos contenidos en la base de datos imple
 
 \textsl{Diseño de la biblioteca para el manejo de la base de datos.}
 
-Existe una extensa librería en lenguaje C que permite trabajar con SQLite, la biblioteca desarrollada para este proyecto esta basada en las siguientes funciones pertenecientes a la librería estándar:
+Se aclara que \textit{ID} corresponde al identificador del usuario dentro de la base de datos, e \textit{IDUSUARIO} corresponde a la localidad de la biblioteca interna del sensor de huella donde se guarda la imagen para reconocimiento del cliente.
 
-\begin{itemize}
-\item sqlite3 open(const char *filename, sqlite3 **ppDb): Función que permite abrir un fichero de base de datos, especificando el nombre para el mismo.
-Filename define el nombre de la base de datos
-ppDB almacena el manipulador de la conexión con la base creada.
-\item sqlite3 close(sqlite3 *): cierra la conexión con la base, liberando todos los recursos asociados.
-Sqlite3 almacena el manipulador de la conexión a ser cerrada.
-\item sqlite3 exec(sqlite3*, const char *sql, int (*callback)(void*, int, char**,char**), void*, char** ermsg): Permite ejecutar múltiples sentencias SQL mediante un solo llamado.
-Sqlite3 almacena el manipulador de la conexión hacia la base de datos.
-Sql contiene la función SQL a ser ejecutada.
-Callback es la función de retro llamada que puede ser invocada tras la ejecución de la sentencia SQL.
-Void es el primer argumento enviado a la función de retro llamada.
-Ermsg corresponde al un mensaje de error.
-\end{itemize}
+Existe una extensa biblioteca en lenguaje C que permite trabajar con SQLite, la biblioteca desarrollada para este proyecto está basada en las funciones estándar y propias mostradas en el diagrama de clases de la figura \ref{fig:clasesql}.
 
-\textsl{Funciones implementadas.}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=1]{./Figures/clasesql.pdf}
+	\caption{Diagrama de clases para el manejo de la base de datos.}
+	\label{fig:clasesql}
+\end{figure}
 
-En base a las funciones descritas anteriormente, se desarrollan las siguientes funciones que permiten las operaciones básicas con la base de datos.
 
-\begin{itemize}
-\item create db: Permite crear una nueva base de datos o abrir una conexión con una existente.
+El acceso y manipulación de la base de datos se realiza mediante la biblioteca \textit{dbService.h} mediante la cual se gestiona los datos de los usuarios dependiendo del evento que se genere.
 
-Parámetros de entrada: data, puntero al identificador o manipulador de la base; name, nombre de la base a ser manipulada o creada. 
+La figura \ref{fig:secuenciasql} muestra el diagrama de secuencia para el uso de la biblioteca \textit{dbService.h} y su vinculación dentro del sistema.
 
-Parámetro de salida: Ninguno.
-
-\item create table: Permite crear una tabla con diferentes campos sobre una base de datos abierta.
-
-Parámetros de entrada: 	data, puntero al identificador o manipulador de la base; sql dat, puntero a la función SQL a ejecutarse; name, nombre de la base sobre la que se creará la tabla.
-
-Parámetro de salida: Ninguno.
-
-\item insert user, print user y delete user realizan las tareas de agregar un nuevo campo o usuario, obtener datos o borrarlos respectivamente. Poseen los mismos parámetros de entrada y salida que la función create table.
-
-\end{itemize}
-
-El acceso y manipulación de base de datos se realiza en el servicio dbService el cual se encarga de gestionar los datos de los usuarios dependiendo del evento que se genere.
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.75]{./Figures/secuenciasql.pdf}
+	\caption{Diagrama de secuencia para el manejo de la base de datos.}
+	\label{fig:secuenciasql}
+\end{figure}
 
 \subsection{Módulo para el manejo de archivo}
 
-Con el fin de establecer un medio de comunicación entre los servicios dbService y  servicio web, se implementa un pequeño módulo para el manejo de ficheros bajo el lenguaje C.
+Con el fin de establecer un medio de comunicación entre los servicios \textit{dbService} y  \textit{servicio web}, se implementa un pequeño módulo para el manejo de ficheros bajo el lenguaje C.
 
-El estandar de C contiene varias funciones para la edición de archivos a las cuales se puede acceder desde la librería stdio.h.
+El estándar de C contiene varias funciones para la edición de archivos a las cuales se puede acceder desde la librería \textit{stdio.h}.
 
-El sistema crea un archivo tipo texto sobre el cual se escribe la información del usuario que tuvo un reconocimiento previo sea por medio de del sensor biométrico o por clave de seguridad.
+El sistema crea un archivo tipo texto sobre el cual se escribe la información del usuario que tuvo un reconocimiento previo sea por medio del sensor biométrico o por clave de seguridad.
 
 Sobre tal fichero se escriben los datos uno a continuación de otro generando de este modo un historial de accesos.
 
-Luego de realizar la escritura correspondiente de los datos, el archivo puede ser recogido por el servicio web para ser mostrado en la pagina.
+Luego de realizar la escritura correspondiente de los datos, el archivo puede ser recogido por el \textit{servicio web} para ser mostrado en la página.
 
-La manipulación del archivo esta a cargo de dbService quien coordina la lectura desde la base de datos y la escritura sobre el archivo.
+La manipulación del archivo está a cargo de \textit{dbService} quien coordina la lectura desde la base de datos y la escritura sobre el archivo.
 
 \section{Subsistema Servicio Web}
 
@@ -658,9 +601,9 @@ Para lograr que el usuario pueda acceder eventualmente al historial de accesos r
 
 Para conseguir dicho objetivo existen en la actualidad diferentes herramientas combinadas que permiten lograr servidores con gran prestación de servicios. Este proyecto se basa en uno de los paquetes informáticos mas difundidos para tal trabajo, la arquitectura LAMP, acrónimo de Linux, Apache, MySQL y PHP.
 
-Mediante el paquete mencionado se logra ejecutar páginas web HTML dinámicas; se aclara que la herramienta MySQL es reemplazada por SQLite para realizar el manejo de la base de datos.
+Mediante el paquete mencionado se logra ejecutar páginas web HTML dinámicas; se aclara que la arquitectura diseñada no usa la herramienta MySQL (ni tampoco SQLite por la que se puede reemplazar) ya que para realizar el manejo de la base de datos se usa SQLite desde otro servicio quedando como un punto de mejora en un trabajo futuro. 
 
-A continuación se describe las características mas relevantes de cada uno de los paquetes informáticos utilizados.
+A continuación se describe las características mas relevantes de los paquetes informáticos utilizados.
 
 \begin{itemize}
 
@@ -676,21 +619,15 @@ Posee módulos de seguridad actualizados con frecuencia, almacenamiento de cache
 
 Permite configurar un hosting virtual basado en Ips o en nombres permitiendo alojar varios sitios web en el mismo equipo.
 
-\item SQLite: Sistema de gestión para el manejo de base de datos.
+\item PHP (PHP Personal Hypertex Prepocessor): Lenguaje de código abierto para generación de scripts para el desarrollo de páginas web el cual pude ser embebido en páginas HTML.
 
-\item PHP (PHP Personal Hypertex Prepocessor): Lenguaje de código abierto para generación de scripts para el desarrollo de paginas web el cual pude ser embebido en páginas HTML.
-
-Con sintaxis recurrente a lenguaje C, permite una sencilla su implementación. 
-
-Incluye una interfaz de línea de comandos que puede ser usada en aplicaciones gráficas independientes.
-
-Permite la conexión a diferentes tipos de servidores de bases de datos tanto SQL como NoSQL.
+Con sintaxis recurrente a lenguaje C, permite una sencilla implementación. 
 
 El código escrito en PHP es invisible al navegador web y al cliente ya que es el servidor el que se encarga de ejecutarlo y enviar el resultado.
 
 \end{itemize}
 
-Basado en la arquitectura Linux, Apache, SQLite, PHP (LASP), el proyecto implementa un script para la lectura del archivo que contiene el historial de accesos y lo muestra mediante el navegador mediante una conexión local.
+Basado en la arquitectura Linux, Apache, PHP, el proyecto implementa un script para la lectura del archivo que contiene el historial de accesos y lo muestra mediante el navegador mediante una conexión local.
 
 La figura \ref{fig:servidor} muestra el esquema final del servidor web implementado.
 
@@ -701,7 +638,7 @@ La figura \ref{fig:servidor} muestra el esquema final del servidor web implement
 	\label{fig:servidor}
 \end{figure}
 
-La página desarrollada en muy sencilla pero gracias a la estructura sobre la cual esta montada brinda grandes posibilidades de ampliación, dejando para trabajo futuro la posible implementación de formularios o gráficas que pontecialicen al sistema.
+La página desarrollada es muy sencilla pero gracias a la estructura sobre la cual esta montada brinda grandes posibilidades de ampliación, dejando para trabajo futuro la posible implementación de formularios o gráficas que pontecialicen al sistema.
 
 
 

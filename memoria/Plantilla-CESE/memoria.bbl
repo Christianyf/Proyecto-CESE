@@ -1,0 +1,113 @@
+% $ biblatex auxiliary file $
+% $ biblatex version 2.6 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\entry{FINGER}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{Adafruit}}{A.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{A1}
+  \strng{fullhash}{A1}
+  \field{sortinit}{A}
+  \field{title}{Fingerprint sensor}
+  \verb{url}
+  \verb https://www.adafruit.com/product/751/
+  \endverb
+  \field{year}{2018}
+\endentry
+
+\entry{WIRINGPI}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{Gordon Henderson}}{G.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{G1}
+  \strng{fullhash}{G1}
+  \field{sortinit}{G}
+  \field{title}{WiringPi}
+  \verb{url}
+  \verb http://wiringpi.com/
+  \endverb
+  \field{year}{2018}
+\endentry
+
+\entry{GTK}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{GTK+ team}}{G.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{G2}
+  \strng{fullhash}{G2}
+  \field{sortinit}{G}
+  \field{title}{The GTK project}
+  \verb{url}
+  \verb https://www.gtk.org/documentation.php/
+  \endverb
+  \field{year}{2017}
+\endentry
+
+\entry{ELEPI}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{Premier Farnell}}{P.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{P1}
+  \strng{fullhash}{P1}
+  \field{sortinit}{P}
+  \field{title}{Raspberrypi 7 touchscreen}
+  \verb{url}
+  \verb https://www.element14.com/community/docs/DOC-78156/l/raspberry-pi-7-tou
+  \verb chscreen-display/
+  \endverb
+  \field{year}{2018}
+\endentry
+
+\entry{SQLITE}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {{SQLITE.ORG}}{S.}%
+     {}{}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{S1}
+  \strng{fullhash}{S1}
+  \field{sortinit}{S}
+  \field{title}{SQLite}
+  \verb{url}
+  \verb https://www.sqlite.org/index.html/
+  \endverb
+  \field{year}{2018}
+\endentry
+
+\lossort
+\endlossort
+
+\endinput

@@ -3,7 +3,7 @@
 \chapter{Ensayos y Resultados} % Main chapter title
 
 \label{Chapter4} % Change X to a consecutive number; for referencing this chapter elsewhere, use \ref{ChapterX}
-En esta sección se detallan los ensayos realizados para probar el correcto funcionamiento del hardware y firmware.
+En esta sección se detallan los ensayos realizados para probar el correcto funcionamiento del hardware y firmware y los resultados obtenidos.
 %----------------------------------------------------------------------------------------
 %	SECTION 1
 %----------------------------------------------------------------------------------------
@@ -13,26 +13,29 @@ En esta sección se detallan los ensayos realizados para probar el correcto func
 
 Con respecto al hardware se realizaron ensayos individuales de cada componente.
 \subsection{Pruebas sobre la plataforma de desarrollo}
-La prueba de funcionamiento de la placa se realizó posteriormente a la instalación del sistema operativo. Para tal instalación es necesario cargar la imagen ISO del sistema en una memoria micro SD con capacidad de almacenamiento mayor o igual a 8GB.
+La prueba de funcionamiento de la placa se realizó posteriormente a la instalación del sistema operativo. Para tal instalación es necesario cargar la imagen ISO del sistema en una memoria micro SD con capacidad de almacenamiento mayor o igual a 8 GB.
 
-Una vez con la imagen del sistema operativo en la memoria, esta es colocada en la ranura de la placa destinada para tal propósito.
+Una vez con la imagen del sistema operativo en la memoria, ésta es colocada en la ranura de la placa destinada para tal propósito.
 
 Posterior a esto se energiza el dispositivo con una fuente idónea según las especificaciones y de manera automática arrancará el sistema operativo.
 
 Para poder visualizar y realizar las primeras configuraciones es necesario conectar una pantalla, un mouse y un teclado.
 
 Las primeras configuraciones a realizar son el cambio de contraseña, el idioma y configuraciones de red inalámbricas. Para tal propósito se puede utilizar el entorno gráfico o mediante comandos sobre la consola.
+
 Todas las configuraciones iniciales se realizaron sin mayor inconveniente demostrando la operatividad de la placa como del sistema operativo.
 
-Finalmente se realiza la prueba de lectura de la interfaz GPIO para determinar la operatividad de la misma. Para esto se ejecuta desde la consola el comando gpio readall de la libreria wiringPi previamente instalada, el resultado obtenido se muestra en la figura \ref{fig:readall} . 
+Finalmente se realiza la prueba de lectura de la interfaz GPIO para determinar la operatividad de la misma. Para esto se ejecuta desde la consola el comando \textit{gpio readall} de la biblioteca \textit{wiringPi} previamente instalada, el resultado obtenido se muestra en la figura \ref{fig:readall}. 
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[scale =.7]{./Figures/readall.png}
 	\caption{Resultado de la lectura sobre la interfaz GPIO en raspberry Pi 3.}
 	\label{fig:readall}
 \end{figure}
 
+El resultado obtenido muestra el despliegue de los pines que conforman la interfaz GPIO y sus diferentes denominaciones y funciones.
+Puede apreciarse que los cuarenta pines  se encuentran disponibles, operativos y  en las direcciones físicas esperadas ya que la prueba realizada no arroja ningún mensaje de error o advertencia. 
 
 \subsection{Pruebas sobre el conjunto pantalla, controlador, plataforma}
 Se realizaron pruebas de funcionalidad sobre el conjunto de componentes, para tal objetivo se cuenta previamente con la instalación del sistema operativo sobre la placa de desarrollo y las siguientes conexiones:
@@ -45,7 +48,7 @@ Se realizaron pruebas de funcionalidad sobre el conjunto de componentes, para ta
 
 La figura \ref{fig:controlador} muestra los puertos de conexión sobre el controlador de la pantalla.
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[scale =.25]{./Figures/controlador.png}
 	\caption{Puertos para conexión controlador, pantalla, raspberry pi.}
@@ -56,17 +59,18 @@ Luego de realizadas las conexiones mencionadas, se energiza todo el sistema y se
  
 En caso que no se pueda reconocer la pantalla, suele ser necesaria una actualización del sistema operativo.
 
-La pantalla touch reemplaza el uso del mouse, pero, sigue dependiendo de un teclado externo.Por tal motivo y para dar mayor autonomía y sacarle mas provecho a la pantalla, se instala un teclado virtual mediante la ejecución del comando sudo apt-get install matchbox-keyboard a través del terminal.
+La pantalla touch reemplaza el uso del mouse, pero, sigue dependiendo de un teclado externo.Por tal motivo y para dar mayor autonomía y sacarle mas provecho a la pantalla, se instala un teclado virtual utilizando el paquete \textit{matchbox-keyboard} a través del terminal.
 
 La figura \ref{fig:teclado} muestra el funcionamiento del teclado virtual sobre el conjunto de elementos raspberry pi, controlador, pantalla touch.
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[scale =.7]{./Figures/teclado.png}
 	\caption{Teclado virtual para raspberry pi y pantalla touch.}
 	\label{fig:teclado}
 \end{figure}
 
+De ésta manera se logra comprobar el correcto funcionamiento de los tres elementos mencionados. La plataforma y el controlador permiten la visualización de imágenes sobre la pantalla; el controlador permite además, reemplazar el uso del mouse y del teclado externo gracias a la tecnología touch la cual funciona correctamente.
 
 \subsection{Pruebas sobre el módulo sensor de huella dactilar}
 
@@ -74,11 +78,11 @@ En cuestión de hardware el módulo sensor de huella es un solo bloque constitut
 
 Luego de aplicar alimentación al sensor, la iluminación mediante luz led debe hacerse presente lo que indica en primera instancia que el módulo esta listo para recibir comandos.
 
-Las pruebas mas rigurosas para este dispositivo se realizan mediante software.
+Las pruebas más importantes para este dispositivo se realizan mediante software y se enfocan en el envío y recepción de tramas que son la base para el manejo del módulo.
 
 La figura \ref{fig:sensor} muestra la respuesta del sensor luego de ser energizado.
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[scale =.3]{./Figures/sensor.png}
 	\caption{Módulo lector de huellas.}
@@ -91,11 +95,11 @@ Con respecto al firmware se realizaron pruebas individuales de cada módulo.
 \subsection{Pruebas de comunicación con el módulo sensor de huella}
 El proceso de comunicación con el sensor consta de dos partes fundamentales, la construcción y envío de trama desde el ordenador y el recibimiento de trama de respuesta desde el sensor.
 
-En base a los procesos mencionados se centra la construcción de la biblioteca que maneja el sensor bajo las diferentes modalidades del sistema.
+En base a los procesos mencionados se centra la construcción de la biblioteca que maneja el dispositivo bajo las diferentes modalidades del sistema. 
 
-La figura \ref{fig:comsen} muestra el resultado de envío y recepción para la instrucción “adquirir imagen” implementada con la función “getImage()” de la librería diseñada.
+La figura \ref{fig:comsen} muestra el resultado de envío y recepción para la instrucción \textit{adquirir imagen} implementada con la función \textit{getImage()} de la biblioteca diseñada.
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[scale =.3]{./Figures/comsen.png}
 	\caption{Resultado de envío y recepción de tramas pc-sensor.}
@@ -160,31 +164,31 @@ La tabla \ref{tab:tramarecibida} muestra el significado de cada byte recibido.
 	\label{tab:tramarecibida}
 \end{table*}
 
+
+Para realizar éstas pruebas se utiliza la EDU-CIAA como adaptador para comunicación serial entre la placa de desarrollo y el computador, gracias a esta implementación se puede analizar las tramas mediante el programa CuteCom.
+
 \subsection{Pruebas para la interfaz gráfica}
+Las pruebas realizadas se basan en tres puntos:
+
+\textit{Pruebas de apariencia:} Se verifica la distribución, tamaño y todo lo referente al aspecto de cada una de las ventanas y los elementos dentro de éstas para conseguir una interfaz clara y amigable.
+
 A continuación se muestran los diseños finales de las páginas que conforman la interfaz desarrollada.
 
-
-
-
 La figura \ref{fig:paginicio} muestra el diseño de la página principal.
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[height=5.5cm,width=10cm]{./Figures/paginicio.png}
 	\caption{Página de inicio para la interfaz gráfica.}
 	\label{fig:paginicio}
 \end{figure}
 
-
-
 La figura \ref{fig:paginabio} muestra el diseño de la segunda página del interfaz correspondiente al acceso mediante reconocimiento de huella.
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[height=5.5cm,width=10cm]{./Figures/paginabio.png}
 	\caption{Página para acceso mediante reconocimiento de huella.}
 	\label{fig:paginabio}
 \end{figure}
-
-
 
 La figura \ref{fig:pagcontrasena} muestra el diseño de la página correspondiente al acceso mediante contraseña.
 \begin{figure}[H]
@@ -194,34 +198,77 @@ La figura \ref{fig:pagcontrasena} muestra el diseño de la página correspondien
 	\label{fig:pagcontrasena}
 \end{figure}
 
-
-
-
-La última página corresponde al menú de configuraciones la cual esta subdividida en tres secciones, las que permitirán a futuro, ingresar un nuevo usuario, borrar un usuario existente y visualizar información importante respectivamente, la figura \ref{fig:pagconfiguracion} muestra el diseño de las sud secciones.
-
-\begin{figure}[h]
+La última página corresponde al menú de configuraciones la cual esta subdividida en tres secciones, las que permitirán a futuro, ingresar un nuevo usuario, borrar un usuario existente y visualizar información importante respectivamente, la figura \ref{fig:pagconfiguracion} muestra el diseño de las sub secciones.
+%height=14cm,width=12cm
+\begin{figure}[H]
 	\centering
-	\includegraphics[height=14cm,width=12cm]{./Figures/pagconfiguracion.png}
-	\caption{Página para configuraciones.}
+	\includegraphics[scale=.7]{./Figures/pagconfuguracion.pdf}
+	\caption{Página para configuraciones a) agregar usuario, b) borrar usuario, c) información.}
 	\label{fig:pagconfiguracion}
 \end{figure}
 
-\subsection{Pruebas modelo cliente servidor}
-El cliente y servidor son servicios separados con diferentes módulos constitutivos que interactúan en una comunicación local.
+\textit{Pruebas de asignación de señales:}  Estas pruebas verifican que cada elemento de las ventanas tenga un rol dentro del programa.
 
-Cada servicio es compilado mediante la implementación de un archivo makefile y ejecutado mediante un ejecutable.
+La interfaz desarrollada está basada fundamentalmente en el uso de botones y etiquetas. 
+Los botones cumplen dos tareas principales; la primera es vincular su acción para el registro de un carácter alfanumérico y la segunda es ligar su acción al procesamiento de datos.
 
-Para el caso del servidor, la carpeta src contiene los archivos.c y cabeceras.h de los módulos para manejo de base de datos y de ficheros; el archivo de compilación makefile y el ejecutable servidor.
+Las etiquetas por su parte están encargadas de mostrar la información al usuario; ésta información puede ser fija o puede ser dependiente de un proceso interno previo.
 
-Para el cliente, la carpeta src contiene los archivos.c y cabeceras.h para el manejo de los módulos de interfaz gráfica, sensor de huella y periféricos; la carpeta glade contiene los archivos.glade para la construcción de la interfaz; la carpeta res contiene los gráficos para la interfaz; el archivo de compilación makefile y el ejecutable cliente.
+La prueba puede realizare presionando cada uno de los botones y verificando su acción, en el caso de los botones, y observar que información despliegan en el caso de las etiquetas. Una manera más organizada de realizar éste test, en el caso de los botones, es referirse a la sección \textit{Propiedades del Botón} dentro del interfaz en el entorno Glade y constatar que el elemento tiene asociado un identificador único y una función de ejecución o callback ligado a un evento.
 
-La figura \ref{fig:archivos} muestra la estructura de archivos implementada para los servicios.
-\begin{figure}[h]
+Existen diferentes maneras de generar un callback; para este proyecto se utiliza el llamado \textit{clicked} mediante el cual se asocia el nombre de una función que se ejecutará cada vez que se presione el botón.
+
+La figura \ref{fig:botonid} muestra la comprobación de asignación del identificador y del callback para un botón de la interfaz desarrollada.
+
+\begin{figure}[H]
 	\centering
-	\includegraphics[scale=.2]{./Figures/archivos.png}
-	\caption{Estructura de archivos para los servicios cliente y servidor.}
-	\label{fig:archivos}
+	\includegraphics[scale=.22]{./Figures/botonid.pdf}
+	\caption{Identificador y callback asociados a un botón de la interfaz.}
+	\label{fig:botonid}
 \end{figure}
+
+En el caso de las etiquetas no se utilizan los llamados a funciones por evento ya que su funcionamiento esta ligado exclusivamente a procesos internos específicos y no a interacciones con el usuario donde son más comúnmente usadas. La asignación de un identificador es necesaria y también es verificada.
+
+La figura \ref{fig:labelid} muestra la comprobación de un identificador para una etiqueta de la interfaz desarrollada.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.22]{./Figures/labelid.pdf}
+	\caption{Identificador asociado a una etiqueta de la interfaz.}
+	\label{fig:labelid}
+\end{figure}
+
+\textit{Pruebas sobre el uso de threads:} Los botones de la ventana de inicio invocan una nueva ventana y una tarea asociada cada vez que son presionados, al salir de ésta luego de presionar el botón \textit{Back}, cierran la tarea y los procesos internos y vuelven a la ventana inicial.
+
+La prueba consiste en realizar una secuencia de navegación entre la ventana principal y dos de las ventanas dependientes y mostrar mediante mensajes en consola, el inicio, la ejecución y el fin de cada thread. 
+
+La figura \ref{fig:thread} muestra el resultado obtenido luego de este procedimiento.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=.3]{./Figures/thread.png}
+	\caption{Secuencia de ejecución de threads.}
+	\label{fig:thread}
+\end{figure}
+
+El resultado muestra que la ventana de inicio siempre se ejecuta antes que las ventanas secundarias siendo el punto de partida, además, las ventanas y por consiguiente los threads no se pisan cumpliendo con lo planteado en la sección 3.6.1. 
+
+\subsection{Pruebas de comunicación entre servicios}
+%El cliente y servidor son servicios separados con diferentes módulos constitutivos que interactúan en una comunicación local.
+
+%Cada servicio es compilado mediante la implementación de un archivo makefile y ejecutado mediante un ejecutable.
+
+%Para el caso del servidor, la carpeta src contiene los archivos.c y cabeceras.h de los módulos para manejo de base de datos y de ficheros; el archivo de compilación makefile y el ejecutable servidor.
+
+%Para el cliente, la carpeta src contiene los archivos.c y cabeceras.h para el manejo de los módulos de interfaz gráfica, sensor de huella y periféricos; la carpeta glade contiene los archivos.glade para la construcción de la interfaz; la carpeta res contiene los gráficos para la interfaz; el archivo de compilación makefile y el ejecutable cliente.
+
+%La figura \ref{fig:archivos} muestra la estructura de archivos implementada para los servicios.
+%\begin{figure}[h]
+%	\centering
+%	\includegraphics[scale=.2]{./Figures/archivos.png}
+%	\caption{Estructura de archivos para los servicios cliente y servidor.}
+%	\label{fig:archivos}
+%\end{figure}
 
 
 Para poner en funcionamiento el sistema se debe en primer lugar iniciar el servidor y posteriormente el cliente.
@@ -238,18 +285,18 @@ Los resultados obtenidos se muestran en la figura \ref{fig:mensaje}.
 \end{figure}
 
 \subsection{Pruebas sobre el módulo para gestión de base de datos}
-Para probar la biblioteca diseñada se implementa un pequeño script con el cual se abre una base de datos con nombre base users.db. Dentro de esta se crea una tabla nombrada USER con los campos ID, NOMBRE, PASSWORD y DATA; se ingresan cuatro usuarios y al final se lee la base resultante.
+Para probar la biblioteca diseñada se implementa un pequeño script con el cual se abre una base de datos con nombre \textit{base users.db}. Dentro de esta se crea una tabla nombrada \textit{USER} con los campos \textit{ID, NOMBRE, PASSWORD y DATA}; se ingresan cuatro usuarios y al final se lee la base resultante.
 
 La figura \ref{fig:baseuno} muestra el resultado obtenido.
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[scale=.3]{./Figures/baseuno.png}
 	\caption{Lectura de la base de datos con cuatro usuarios registrados.}
 	\label{fig:baseuno}
 \end{figure}
 
-Otra prueba implementada consistió en borrar un usuario. De la base establecida, se borra el usuario con ID=3.
+Otra prueba implementada consistió en borrar un usuario mediante el uso de la biblioteca diseñada. De la base establecida, se borra el usuario con ID=3.
 
 La figura \ref{fig:basedos} muestra el resultado obtenido al leer la base luego de borrado el usuario.
 
@@ -260,7 +307,7 @@ La figura \ref{fig:basedos} muestra el resultado obtenido al leer la base luego 
 	\label{fig:basedos}
 \end{figure}
 
-Finalmente, para garantizar que la base de datos fue creada correctamente y podrá se gestionada por otros sistemas, se utiliza la herramienta DB Browser for SQLite para visualizar el contenido de la misma.
+Finalmente, para garantizar que la base de datos fue creada correctamente y podrá ser gestionada por otros sistemas, se utiliza la herramienta \textit{DB Browser for SQLite} para visualizar el contenido de la misma.
 
 La figura \ref{fig:browser} muestra el resultado obtenido con la herramienta.
 
@@ -282,7 +329,7 @@ El resultado obtenido se muestra en la figura \ref{fig:web}.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=.3]{./Figures/web.png}
+	\includegraphics[scale=.25]{./Figures/web.png}
 	\caption{Lectura de historia de accesos mediante el servidor web.}
 	\label{fig:web}
 \end{figure}
